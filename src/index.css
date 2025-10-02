@@ -1,0 +1,21 @@
+@import "tailwindcss";
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  
+}
+body {
+  font-family: 'Playfair Display', serif; /* elegant serif for general text */
+  background-color: #fafafa; /* optional clean background */
+  color: #2c2c2c;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Parisienne', cursive; /* fancy French titles */
+  letter-spacing: 1px;
+}
+
+button {
+  font-family: 'Playfair Display', serif;
+}
