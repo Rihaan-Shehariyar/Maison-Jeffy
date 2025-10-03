@@ -17,7 +17,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const res = await axios.get(
-        `http://localhost:3001/users?email=${formData.email}&password=${formData.password}`
+        `http://localhost:5000/users?email=${formData.email}&password=${formData.password}`
       );
 
       if (res.data.length > 0) {

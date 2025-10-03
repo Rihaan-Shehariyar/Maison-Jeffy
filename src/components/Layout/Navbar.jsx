@@ -14,11 +14,21 @@ function Navbar() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [searchQuery ,setSearch] = useState("")
 
   const handleLogout = () => {
     logout();
     navigate("/login");
   };
+
+  const handleSearch =  (e) => {
+    e.preventDefault();
+    if(searchQuery.trim()){
+      navigate(`/home?search=${encodeURIComponent(searchQuery)}`);
+      setSearch("")
+    }
+
+  }
 
   return (
     <nav className="bg-white shadow-md sticky top-0 z-50">
@@ -29,8 +39,8 @@ function Navbar() {
           <Link to="/" className="text-gray-700 font-medium hover:text-indigo-600 transition" style={{ textDecoration: "none" }} >
             Home
           </Link>
-          <Link to="/" className="text-gray-700 font-medium hover:text-indigo-600 transition" style={{ textDecoration: "none" }}>
-            Catalog
+          <Link to="/orders" className="text-gray-700 font-medium hover:text-indigo-600 transition" style={{ textDecoration: "none" }}>
+            Orders
           </Link>
         </div>
 
@@ -47,9 +57,30 @@ function Navbar() {
 
         {/* Right Icons + Login/Logout */}
         <div className="flex items-center gap-4 flex-1 justify-end">
-          <Link to="/">
-            <FontAwesomeIcon icon={faMagnifyingGlass} className="text-gray-700 text-lg hover:text-indigo-600 transition"/>
-          </Link>
+
+           {/* Search Bar */}
+
+
+ <form onSubmit={handleSearch} className="flex items-center relative">
+  <input
+    type="text"
+    placeholder="Search"
+    value={searchQuery}
+    onChange={(e) => setSearch(e.target.value)}
+    className="border rounded-full px-4 py-2 pr-10 focus:outline-none w-64 md:w-80 lg:w-96 transition-all duration-300"
+  />
+
+  <FontAwesomeIcon
+    icon={faMagnifyingGlass}
+    className="absolute right-0 top-1/2 -translate-y-1/2 text-gray-500 cursor-pointer hover:text-indigo-600"
+    onClick={handleSearch}
+  />
+</form>
+
+
+          
+            
+          
           <Link to="/wishlist" className="relative">
             <FontAwesomeIcon icon={faHeart} className="text-gray-700 text-lg hover:text-pink-500 transition"/>
             {wishlist.length > 0 && (
@@ -66,6 +97,20 @@ function Navbar() {
               </span>
             )}
           </Link>
+
+           {/* User Info */}
+  {user && (
+    <div className="flex items-center gap-2 ml-4">
+      {user.avatar && (
+        <img 
+          src={user.avatar} 
+          alt={user.name} 
+          className="w-8 h-8 rounded-full object-cover"
+        />
+      )}
+      <span className="text-gray-700 font-medium">{user.name}</span>
+    </div>
+  )}
           {!user ? (
             <Link to="/login">
               <button className="px-4 py-1 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition">

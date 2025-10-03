@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { CartContext } from "./CartContext";
+import { CartContext, useCart } from "./CartContext";
 import { useAuth } from "./AuthContext";
 import { useWishlist } from "./WishlistContext"; 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,6 +13,7 @@ export default function ViewProduct() {
   const { addToCart } = useContext(CartContext);
   const { addToWishlist, removeFromWishlist, wishlist } = useWishlist();
   const { user } = useAuth();
+  const {cart,setCart} = useCart()
 
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -42,6 +43,8 @@ export default function ViewProduct() {
       });
   }, [id, API_URL]);
 
+  const isInCart = cart.find((item) => item.id == product.id) 
+
   if (loading) return <p className="text-center mt-20 text-gray-600">Loading product...</p>;
   if (error) return <p className="text-center mt-20 text-red-500">{error}</p>;
 
@@ -58,7 +61,11 @@ export default function ViewProduct() {
         </div>
 
         <div className="flex flex-col gap-3">
+
+            
           {/* Add to Cart */}
+
+           {isInCart ? "product added" : 
           <button
             onClick={() => addToCart(product)}
             disabled={!user}
@@ -67,7 +74,8 @@ export default function ViewProduct() {
             }`}
           >
             <FontAwesomeIcon icon={faCartShopping} /> Add to Cart
-          </button>
+          </button>}
+
 
           {/* Wishlist Heart Toggle */}
           <button
@@ -106,13 +114,25 @@ export default function ViewProduct() {
             </span>
           </button>
 
-          {/* Buy Now */}
-          <button
-            onClick={() => navigate("/checkout", { state: { product } })}
-            className="flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-orange-500 hover:bg-orange-600 text-white font-semibold transition"
-          >
-            <FontAwesomeIcon icon={faCreditCard} /> Buy Now
-          </button>
+          
+{/* Buy Now */}
+<button
+  onClick={() => {
+    if (!user) {
+      alert("Please login to continue");
+      return;
+    }
+    // ✅ Go directly to Checkout with this product
+    navigate("/chekout", { state: {  buyNowProduct :  product } });
+  }}
+  className={`flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-white font-semibold transition ${
+    user ? "bg-orange-500 hover:bg-orange-600" : "bg-gray-400 cursor-not-allowed"
+  }`}
+>
+  <FontAwesomeIcon icon={faCreditCard} /> Buy Now
+</button>
+
+
         </div>
       </div>
 

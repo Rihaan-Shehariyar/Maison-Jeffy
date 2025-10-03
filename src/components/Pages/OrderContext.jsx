@@ -40,8 +40,8 @@ export const OrderProvider = ({ children }) => {
     const newOrder = {
       id: Date.now(),
       userId: user.id,
-      items: cart,
-      total: cart.reduce((sum, item) => sum + item.price * item.qty, 0),
+      items:  productsToCheckout,
+      total:  productsToCheckout.reduce((sum, item) => sum + item.price * item.qty, 0),
       shipping,
       paymentMethod,
       status: "Pending",

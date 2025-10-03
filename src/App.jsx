@@ -13,6 +13,11 @@ import CartPage from './components/Pages/CartPage';
 import ChekoutPage from './components/Pages/ChekoutPage';
 import WishlistPage from './components/Pages/WishlistPage';
 import { WishlistProvider } from './components/Pages/WishlistContext';
+import Payment from './components/Pages/Payment';
+import PaymentSuccess from './components/Pages/PaymentSuccess';
+import PaymentFailed from './components/Pages/PaymentFailed';
+import OrdersPage from './components/Pages/OrdersPage';
+import OrderDetailsPage from './components/Pages/OrderDetailsPage';
 
 
 function App() {
@@ -50,7 +55,11 @@ function AppContent() {
         <Route path="/cart" element={<CartPage />} />
         <Route path="/chekout" element={<ChekoutPage />} /> 
         <Route path="/wishlist" element={<WishlistPage />} />
-        <Route path='/orders' element={<OrderProvider />} />
+        <Route path='/payment'element = {<Payment />} />
+        <Route path="/payment-failed" element={<PaymentFailed />} />
+        <Route path="/payment-success" element={<PaymentSuccess />} />
+        <Route path="/orders" element={<OrdersPage />} />
+        <Route path="/orders/:id" element={<OrderDetailsPage />} />
 
       </Routes>
     </>

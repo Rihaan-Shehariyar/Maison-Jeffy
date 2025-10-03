@@ -9,7 +9,6 @@ export const WishlistProvider = ({ children }) => {
 
   const addToWishlist = (product) => {
     if (!user) {
-      // Optional: you can redirect to login or just silently ignore
       return;
     }
 

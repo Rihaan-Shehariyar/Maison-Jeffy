@@ -24,13 +24,13 @@ const Registration = () => {
     console.log('Form submitted:', formData);
 
     try{
-    const res = await axios.get(`http://localhost:5001/users?email=${formData.email}`);
+    const res = await axios.get(`http://localhost:5000/users?email=${formData.email}`);
 
     if(res.data.length > 0){
       alert("user already exist")
       return;
     }
-     await axios.post("http://localhost:5001/users",formData)
+     await axios.post("http://localhost:5000/users",formData)
   alert("SignUp Success")
   navigate("/login")
     

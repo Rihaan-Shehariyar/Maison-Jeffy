@@ -1,154 +1,169 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "./AuthContext";
+import { useWishlist } from "./WishlistContext";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "./AuthContext";
-import { useWishlist } from "./WishlistContext";
+
+// Memoized ProductCard to prevent unnecessary re-renders
+const ProductCard = React.memo(({ product, isLiked, onWishlistToggle }) => (
+  <div className="relative flex flex-col items-center text-center group bg-white rounded-lg shadow hover:shadow-lg transition-shadow duration-300 p-4">
+    <div className="relative w-full h-64 mb-4 rounded-lg overflow-hidden">
+      <Link to={`/products/${product.id}`}>
+        <img
+          src={product.image}
+          alt={product.name}
+          loading="lazy"
+          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+        />
+      </Link>
+
+      <button
+        onClick={() => onWishlistToggle(product)}
+        className="absolute top-3 right-3 z-30 focus:outline-none p-0 bg-transparent border-none"
+      >
+        <span
+          className={`text-3xl cursor-pointer transition-transform duration-300 ${
+            isLiked ? "text-pink-500" : "text-gray-400 hover:text-pink-500 hover:scale-110"
+          }`}
+        >
+          ♥
+        </span>
+      </button>
+    </div>
+
+    <Link to={`/products/${product.id}`} className="hover:text-indigo-600 transition-colors no-underline" style={{textDecoration: "none"}}>
+      <h3 className="text-lg font-semibold text-gray-900 tracking-tight" s>{product.name}</h3>
+    </Link>
+
+    <p className="text-indigo-700 font-bold mt-2 text-lg">₹ {product.price}</p>
+  </div>
+));
 
 function Home() {
   const { addToWishlist, removeFromWishlist, wishlist } = useWishlist();
   const { user } = useAuth();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedType, setSelectedType] = useState("All");
+  const queryParams = new URLSearchParams(window.location.search);
+  const searchQuery = queryParams.get("search") || "";
+
   const navigate = useNavigate();
 
+  
   useEffect(() => {
     axios
-      .get("http://localhost:3000/products")
+      .get("http://localhost:5000/products")
       .then((res) => {
-        setProducts(res.data);
-        setLoading(false);
+        const shuffled = res.data.sort(() => Math.random() - 0.5);
+        setProducts(shuffled);
       })
-      .catch((err) => {
-        console.log(err);
-        setLoading(false);
-      });
+      .catch(console.error)
+      .finally(() => setLoading(false));
   }, []);
+
+  const isInWishlist = (id) => wishlist.some((item) => item.id === id);
+
+  const handleWishlistToggle = (product) => {
+    if (!user) return navigate("/login");
+    isInWishlist(product.id) ? removeFromWishlist(product.id) : addToWishlist(product);
+  };
+
+  // useMemo for performance
+  const filteredProducts = useMemo(() => {
+    return products.filter(
+      (p) =>
+        (selectedType === "All" || p.type === selectedType) &&
+        [p.name, p.brand, p.type].some((field) =>
+          field?.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+    );
+  }, [products, selectedType, searchQuery]);
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center min-h-screen text-gray-600 font-serif">
+      <div className="flex justify-center items-center min-h-screen text-gray-600 font-sans">
         Loading products...
       </div>
     );
   }
 
-  const isInWishlist = (id) => wishlist.some((item) => item.id === id);
-
-  const handleWishlistToggle = (product) => {
-    if (!user) {
-      navigate("/login");
-      return;
-    }
-    isInWishlist(product.id)
-      ? removeFromWishlist(product.id)
-      : addToWishlist(product);
-  };
-
   return (
-    <div className="bg-gradient-to-b from-pink-50 to-white min-h-screen font-serif">
+    <div className="bg-gradient-to-b from-pink-50 to-white min-h-screen font-sans">
       {/* Hero Banner */}
-      <section className="w-full mb-12">
-        <Swiper
-          modules={[Autoplay, Pagination]}
-          autoplay={{ delay: 3000, disableOnInteraction: false }}
-          loop={true}
-          pagination={{ clickable: true }}
-          className="w-full"
-        >
-          <SwiperSlide>
-            <div className="w-full aspect-[16/9]">
-              <img
-                src="/public/banner3.jpg"
-                alt="Banner 1"
-                className="w-full h-full object-contain object-center rounded-xl shadow-lg"
-              />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="w-full aspect-[16/9]">
-              <img
-                src="/public/banner5.jpg"
-                alt="Banner 2"
-                className="w-full h-full object-contain object-center rounded-xl shadow-lg"
-              />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="w-full aspect-[16/9]">
-              <img
-                src="/public/banner6.jpg"
-                alt="Banner 3"
-                className="w-full h-full object-contain object-center rounded-xl shadow-lg"
-              />
-            </div>
-          </SwiperSlide>
-        </Swiper>
-      </section>
+      {!searchQuery && (
+        <section className="w-full mb-12">
+          <Swiper
+            modules={[Autoplay, Pagination]}
+            autoplay={{ delay: 3000, disableOnInteraction: false }}
+            loop
+            pagination={{ clickable: true }}
+            className="w-full"
+          >
+            {["banner3.jpg", "banner5.jpg", "banner6.jpg"].map((img, idx) => (
+              <SwiperSlide key={idx}>
+                <div className="w-full aspect-[16/9]">
+                  <img
+                    src={`/public/${img}`}
+                    alt={`Banner ${idx + 1}`}
+                    className="w-full h-full object-contain object-center rounded-xl shadow-lg"
+                    loading="lazy"
+                  />
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </section>
+      )}
 
-      {/* Products Grid */}
+      <br></br><br></br>
+
       <div className="max-w-7xl mx-auto px-6 py-12">
-        <h2 className="text-4xl font-extrabold text-pink-700 mb-10 text-center tracking-wide">
-          Browse Our Collection
+        <h2 className="text-4xl font-extrabold text-gray-900 mb-10 text-center tracking-tight">
+          {searchQuery ? `Search Results for "${searchQuery}"` : "Browse Our Collection"}
         </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 overflow-hidden">
-          {products.map((product) => {
-            const liked = isInWishlist(product.id);
-            return (
-              <div
-                key={product.id}
-                className="relative flex flex-col items-center text-center group"
+
+
+        {/* Filter Buttons */}
+        {!searchQuery && (
+          <div className="flex justify-center gap-4 mb-8 flex-wrap">
+            {["All", "Floral", "Fruity", "Woody", "Oriental", "Fresh"].map((type) => (
+              <button
+                key={type}
+                onClick={() => setSelectedType(type)}
+                className={`px-4 py-2 rounded-full font-semibold transition ${
+                  selectedType === type
+                    ? "bg-indigo-600 text-white"
+                    : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                }`}
               >
-                {/* Product Image Container */}
-                <div className="relative w-full h-64 mb-4 overflow-hidden rounded-lg">
-                  <Link to={`/products/${product.id}`}>
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
-                  </Link>
+                {type}
+              </button>
+            ))}
+          </div>
+        )}
 
-                  {/* Heart inside image */}
-                  <button
-                    onClick={() => handleWishlistToggle(product)}
-                    className="absolute top-3 right-3 z-30"
-                  >
-                    <span
-                      className={`text-5xl cursor-pointer drop-shadow-lg ${
-                        liked
-                          ? "text-pink-500 animate-heart-bounce scale-100 hover:scale-125 transition-transform duration-300"
-                          : "text-gray-300 hover:text-pink-500 hover:scale-125 transition-colors transition-transform duration-300"
-                      }`}
-                    >
-                      ♥
-                    </span>
-                  </button>
-                </div>
+        <br></br><br></br>
 
-                {/* Product Name */}
-                <Link
-                  to={`/products/${product.id}`}
-                  className="hover:text-indigo-600 transition-colors no-underline"
-                  style={{ textDecoration: "none" }}
-                >
-                  <h3 className="text-xl font-bold text-gray-800 tracking-tight">
-                    {product.name}
-                  </h3>
-                </Link>
-
-                {/* Price */}
-                <p className="text-indigo-700 font-semibold mt-2 text-lg">
-                  ₹ {product.price}
-                </p>
-              </div>
-            );
-          })}
-        </div>
+        {filteredProducts.length === 0 ? (
+          <p className="text-center text-gray-500 text-lg mt-10">No products found.</p>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+            {filteredProducts.map((product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                isLiked={isInWishlist(product.id)}
+                onWishlistToggle={handleWishlistToggle}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
