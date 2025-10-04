@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState, useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "./AuthContext";
-import { useWishlist } from "./WishlistContext";
+import { useAuth } from "../context/AuthContext";
+import { useWishlist } from "../context/WishlistContext";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
@@ -11,6 +11,15 @@ import "swiper/css/pagination";
 // Memoized ProductCard to prevent unnecessary re-renders
 const ProductCard = React.memo(({ product, isLiked, onWishlistToggle }) => (
   <div className="relative flex flex-col items-center text-center group bg-white rounded-lg shadow hover:shadow-lg transition-shadow duration-300 p-4">
+  
+   {/* Featured Badge */}
+    {product.featured && (
+      <span className="absolute top-2 left-2 bg-yellow-400 text-white text-xs font-bold px-2 py-1 rounded z-10">
+        FEATURED
+      </span>
+    )}
+
+  
     <div className="relative w-full h-64 mb-4 rounded-lg overflow-hidden">
       <Link to={`/products/${product.id}`}>
         <img
@@ -128,33 +137,15 @@ function Home() {
         </h2>
 
 
-
-        {/* Filter Buttons */}
-        {!searchQuery && (
-          <div className="flex justify-center gap-4 mb-8 flex-wrap">
-            {["All", "Floral", "Fruity", "Woody", "Oriental", "Fresh"].map((type) => (
-              <button
-                key={type}
-                onClick={() => setSelectedType(type)}
-                className={`px-4 py-2 rounded-full font-semibold transition ${
-                  selectedType === type
-                    ? "bg-indigo-600 text-white"
-                    : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                }`}
-              >
-                {type}
-              </button>
-            ))}
-          </div>
-        )}
-
         <br></br><br></br>
 
         {filteredProducts.length === 0 ? (
           <p className="text-center text-gray-500 text-lg mt-10">No products found.</p>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-            {filteredProducts.map((product) => (
+            {filteredProducts
+            .filter((p)=>p.featured)
+            .map((product) => (
               <ProductCard
                 key={product.id}
                 product={product}

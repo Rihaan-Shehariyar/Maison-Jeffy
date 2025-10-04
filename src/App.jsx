@@ -2,22 +2,23 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Layout/Navbar';
-import Registration from './components/Pages/Registration';
-import Login from './components/Pages/Login';
-import Home from './components/Pages/Home';
-import ViewProduct from './components/Pages/ViewProduct';
-import { CartProvider } from './components/Pages/CartContext';
-import { OrderProvider } from './components/Pages/OrderContext';
-import { AuthProvider } from './components/Pages/AuthContext';
-import CartPage from './components/Pages/CartPage';
-import ChekoutPage from './components/Pages/ChekoutPage';
-import WishlistPage from './components/Pages/WishlistPage';
-import { WishlistProvider } from './components/Pages/WishlistContext';
-import Payment from './components/Pages/Payment';
-import PaymentSuccess from './components/Pages/PaymentSuccess';
-import PaymentFailed from './components/Pages/PaymentFailed';
-import OrdersPage from './components/Pages/OrdersPage';
-import OrderDetailsPage from './components/Pages/OrderDetailsPage';
+import Registration from './Pages/Registration';
+import Login from './Pages/Login';
+import Home from './Pages/Home';
+import ViewProduct from './Pages/ViewProduct';
+import { CartProvider } from './context/CartContext';
+import { OrderProvider } from './context/OrderContext';
+import { AuthProvider } from './context/AuthContext';
+import CartPage from './Pages/CartPage';
+import ChekoutPage from './Pages/ChekoutPage';
+import WishlistPage from './Pages/WishlistPage';
+import { WishlistProvider } from './context/WishlistContext';
+import Payment from './Pages/Payment';
+import PaymentSuccess from './Pages/PaymentSuccess';
+import PaymentFailed from './Pages/PaymentFailed';
+import OrdersPage from './Pages/OrdersPage';
+import OrderDetailsPage from './Pages/OrderDetailsPage';
+import Products from './Pages/Products';
 
 
 function App() {
@@ -51,6 +52,7 @@ function AppContent() {
         <Route path="/home" element={<Home />} />
         <Route path="/register" element={<Registration />} />
         <Route path="/login" element={<Login />} />
+        <Route path='/products' element={<Products />} />
         <Route path="/products/:id" element={<ViewProduct />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/chekout" element={<ChekoutPage />} /> 

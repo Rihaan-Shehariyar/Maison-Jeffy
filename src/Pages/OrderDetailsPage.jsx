@@ -1,13 +1,13 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useOrder } from "./OrderContext";
+import { useOrder } from "../context/OrderContext";
 
 export default function OrderDetailsPage() {
   const { id } = useParams();
   const { orders } = useOrder();
   const navigate = useNavigate();
 
-  const order = orders.find((o) => o.id === parseInt(id));
+const order = orders.find((o) => String(o.id) === String(id));
 
   if (!order) {
     return (
@@ -23,6 +23,8 @@ export default function OrderDetailsPage() {
       </div>
     );
   }
+  console.log("Order details:", order);
+
 
   return (
     <div className="max-w-4xl mx-auto p-8 bg-white rounded-xl shadow-lg">
@@ -41,10 +43,12 @@ export default function OrderDetailsPage() {
 
       <h3 className="text-xl font-semibold mb-2">Items</h3>
       <ul className="divide-y">
-        {order.items && order.items.length > 0 ? (
-          order.items.map((item) => (
+        {order.products && order.products.length > 0 ? (
+        
+          order.products.map((item) => (
             <li key={item.id} className="flex justify-between py-2 text-gray-800">
               <span>
+                {console.log(item)}
                 {item.name} × {item.qty}
               </span>
               <span>₹ {item.price * item.qty}</span>

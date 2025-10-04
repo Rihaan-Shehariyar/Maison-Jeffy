@@ -1,9 +1,9 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { CartContext, useCart } from "./CartContext";
-import { useAuth } from "./AuthContext";
-import { useWishlist } from "./WishlistContext"; 
+import { CartContext,useCart } from "../context/CartContext";
+import { useAuth } from "../context/AuthContext";
+import { useWishlist } from "../context/WishlistContext"; 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping, faCreditCard } from "@fortawesome/free-solid-svg-icons";
 
@@ -13,7 +13,7 @@ export default function ViewProduct() {
   const { addToCart } = useContext(CartContext);
   const { addToWishlist, removeFromWishlist, wishlist } = useWishlist();
   const { user } = useAuth();
-  const {cart,setCart} = useCart()
+  const {cart,setCart,removeFromCart, clearCart, updateQty} = useCart()
 
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -45,6 +45,8 @@ export default function ViewProduct() {
 
   const isInCart = cart.find((item) => item.id == product.id) 
 
+
+
   if (loading) return <p className="text-center mt-20 text-gray-600">Loading product...</p>;
   if (error) return <p className="text-center mt-20 text-red-500">{error}</p>;
 
@@ -65,7 +67,22 @@ export default function ViewProduct() {
             
           {/* Add to Cart */}
 
-           {isInCart ? "product added" : 
+         {isInCart ? (
+  <div className="flex items-center gap-3 mt-4">
+    <button
+      onClick={() => updateQty(isInCart.id, Math.max(1, isInCart.qty - 1))}
+      className="px-4 py-2 bg-gray-100 text-gray-700 rounded-full shadow hover:bg-gray-200 transition transform hover:scale-105"
+    >
+      −
+    </button>
+    <span className="px-4 py-2 text-lg font-medium">{isInCart.qty}</span>
+    <button
+      onClick={() => updateQty(isInCart.id, isInCart.qty + 1)}
+      className="px-4 py-2 bg-gray-100 text-gray-700 rounded-full shadow hover:bg-gray-200 transition transform hover:scale-105"
+    >
+      +
+    </button>
+                    </div> ): 
           <button
             onClick={() => addToCart(product)}
             disabled={!user}

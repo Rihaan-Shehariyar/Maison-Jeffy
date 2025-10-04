@@ -1,4 +1,4 @@
-import { useWishlist } from "./WishlistContext";
+import { useWishlist } from "../context/WishlistContext";
 import { useNavigate, Link } from "react-router-dom";
 
 export default function WishlistPage() {
