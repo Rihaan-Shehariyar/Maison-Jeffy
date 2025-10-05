@@ -52,7 +52,7 @@ function AppContent() {
         <Route path="/home" element={<Home />} />
         <Route path="/register" element={<Registration />} />
         <Route path="/login" element={<Login />} />
-        <Route path='/products' element={<Products />} />
+        <Route path='/catalog' element={<Products />} />
         <Route path="/products/:id" element={<ViewProduct />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/chekout" element={<ChekoutPage />} /> 

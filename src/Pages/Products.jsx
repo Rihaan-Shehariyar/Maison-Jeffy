@@ -1,5 +1,5 @@
 import axios from "axios";
-import React,  { useState,useEffect,useMemo } from "react";
+import React,  { useState,useEffect,useMemo,useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useWishlist } from "../context/WishlistContext"; 
@@ -41,6 +41,8 @@ const ProductCard = React.memo(({ product, isLiked, onWishlistToggle }) => (
 export default function Products(){
 
      const [products, setProducts] = useState([]);
+     const containerRef = useRef(null);
+     const [underlineStyle, setUnderlineStyle] = useState({ left: 0, width: 0 });
      const [loading, setLoading] = useState(true);
      const [selectedType, setSelectedType] = useState("All");
      const [sortOption, setSortOption] = useState("default");
@@ -61,6 +63,23 @@ export default function Products(){
       .catch(console.error)
       .finally(() => setLoading(false));
   }, []);
+
+
+  useEffect(() => {
+  const container = containerRef.current;
+  if (!container) return;
+
+  const selectedElement = container.querySelector(
+    `[data-type='${selectedType}']`
+  );
+  if (selectedElement) {
+    setUnderlineStyle({
+      left: selectedElement.offsetLeft,
+      width: selectedElement.offsetWidth,
+    });
+  }
+}, [selectedType]);
+
 
    const isInWishlist = (id) => wishlist.some((item) => item.id === id);
 
@@ -111,23 +130,34 @@ export default function Products(){
         </h2>
         <br></br>
                {/* Filter Buttons */}
-        {!searchQuery && (
-          <div className="flex justify-center gap-4 mb-8 flex-wrap">
-            {["All", "Floral", "Fruity", "Woody", "Oriental", "Fresh"].map((type) => (
-              <button
-                key={type}
-                onClick={() => setSelectedType(type)}
-                className={`px-4 py-2 rounded-full font-semibold transition ${
-                  selectedType === type
-                    ? "bg-indigo-600 text-white"
-                    : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                }`}
-              >
-                {type}
-              </button>
-            ))}
-          </div>
-        )}
+     {/* Type Filter as Text with Underline */}
+{!searchQuery && (
+  <div className="relative flex justify-center gap-6 mb-8" ref={containerRef}>
+    {["All", "Floral", "Fruity", "Woody", "Oriental", "Fresh"].map((type) => (
+      <div
+        key={type}
+        data-type={type}
+        onClick={() => setSelectedType(type)}
+        className={`cursor-pointer font-semibold transition-colors ${
+          selectedType === type
+            ? "text-indigo-600"
+            : "text-gray-700 hover:text-indigo-500"
+        }`}
+      >
+        {type}
+      </div>
+      
+    ))}
+
+    {/* Sliding underline */}
+    
+    <span
+      className="absolute bottom-0 h-1.5 bg-indigo-600 rounded-full transition-all duration-300"
+      style={{ left: underlineStyle.left, width: underlineStyle.width }}
+    ></span>
+  </div>
+)}
+
 
         <br></br>
 
