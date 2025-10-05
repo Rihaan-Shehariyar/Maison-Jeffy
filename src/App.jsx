@@ -1,6 +1,6 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Layout/Navbar';
 import Registration from './Pages/Registration';
 import Login from './Pages/Login';
@@ -27,9 +27,9 @@ function App() {
   <CartProvider>
     <WishlistProvider>
       <OrderProvider>
-        <BrowserRouter>
+        <HashRouter>
           <AppContent />
-        </BrowserRouter>
+        </HashRouter>
       </OrderProvider>
     </WishlistProvider>
   </CartProvider>
