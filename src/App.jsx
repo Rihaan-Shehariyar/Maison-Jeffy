@@ -1,6 +1,6 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Layout/Navbar';
 import Registration from './Pages/Registration';
 import Login from './Pages/Login';
@@ -19,6 +19,9 @@ import PaymentFailed from './Pages/PaymentFailed';
 import OrdersPage from './Pages/OrdersPage';
 import OrderDetailsPage from './Pages/OrderDetailsPage';
 import Products from './Pages/Products';
+import AdminLayout from './Admin/AdminLayout';
+import AdminDashboard from './Admin/AdminDashboard';
+import AdminProducts from './Admin/AdminProducts';
 
 
 function App() {
@@ -27,9 +30,9 @@ function App() {
   <CartProvider>
     <WishlistProvider>
       <OrderProvider>
-        <HashRouter>
+        <BrowserRouter>
           <AppContent />
-        </HashRouter>
+        </BrowserRouter>
       </OrderProvider>
     </WishlistProvider>
   </CartProvider>
@@ -42,7 +45,8 @@ function App() {
 
 function AppContent() {
   const location = useLocation();
-  const hideNavbar = location.pathname === "/login" || location.pathname === "/register";
+  const hideNavbar = location.pathname === "/login" || location.pathname === "/register" ||
+   location.pathname.startsWith("/admin");
 
   return (
     <>
@@ -62,6 +66,19 @@ function AppContent() {
         <Route path="/payment-success" element={<PaymentSuccess />} />
         <Route path="/orders" element={<OrdersPage />} />
         <Route path="/orders/:id" element={<OrderDetailsPage />} />
+
+
+        {/* admin page */}
+
+         <Route path='/admin' element={<AdminLayout />} >
+         <Route path='dashboard' element={<AdminDashboard />} />
+         <Route path='admin-products' element={<AdminProducts />} />
+
+            
+
+      
+
+        </Route> 
 
       </Routes>
     </>

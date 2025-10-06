@@ -1,23 +1,10 @@
 {
-  "users": [
-    {
-      "id": "1",
-      "name": "Rihaan Shehariyar",
-      "email": "rihaanshehariyar@gmail.com",
-      "password": "Rihaan@2"
-    },
-    {
-      "id": "d04d",
-      "name": "John",
-      "email": "testemail@gmail.com",
-      "password": "jwhwecheuc"
-    },
-    {
-      "id": "33d1",
-      "name": "Zehaan",
-      "email": "zehan@gmail.com",
-      "password": "Zehan@2022"
-    }
+   "users": [
+    { "id": "1", "name": "Rihaan Shehariyar", "email": "rihaanshehariyar@gmail.com", "password": "Rihaan@2" },
+    { "id": "2", "name": "John Doe", "email": "john@gmail.com", "password": "John@123" },
+    { "id": "3", "name": "Zehaan", "email": "zehaan@gmail.com", "password": "Zehan@2022" },
+    { "id": "4", "name": "Ava Smith", "email": "ava@gmail.com", "password": "Ava@2022" },
+    { "id": "5", "name": "Liam Brown", "email": "liam@gmail.com", "password": "Liam@2022" }
   ],
   "products": [
     {
@@ -207,374 +194,82 @@
     }
   ],
   "orders": [
-    {
-      "id": "1759389579857",
-      "userId": "1",
-      "products": [
-        {
-          "id": "3",
-          "name": "Lily Dream",
-          "price": 999,
-          "image": "/products/floral3.jpg",
-          "description": "Soft lily notes combined with jasmine and a touch of citrus, perfect for daily wear.",
-          "type": "Floral",
-          "qty": 1
-        }
-      ],
-      "total": 999,
-      "date": "2025-10-02T07:19:39.857Z",
-      "shipping": {
-        "name": "Rihaan Shehariyar",
-        "address": "Thikkodi Panchayath calicut kerala\nLove Dale HO",
-        "phone": "8921996927",
-        "paymentMethod": "cod"
-      },
-      "status": "Pending"
-    },
-    {
-      "id": "1759390116024",
-      "userId": "1",
-      "products": [
-        {
-          "id": "1",
-          "name": "Jasmine Whisper",
-          "price": 1200,
-          "image": "/products/floral1.jpg",
-          "description": "A delicate floral fragrance with top notes of jasmine and lily, evoking freshness and elegance.",
-          "type": "Floral",
-          "qty": 1
-        }
-      ],
-      "total": 1200,
-      "date": "2025-10-02T07:28:36.024Z",
-      "shipping": {
-        "name": "Rihaan Shehariyar",
-        "address": "Thikkodi Panchayath calicut kerala\nLove Dale HO",
-        "phone": "8921996927",
-        "paymentMethod": "cod"
-      },
-      "status": "Pending"
-    },
-    {
-      "id": 1759466751557,
-      "userId": "1",
-      "products": [
-        {
-          "id": "7",
-          "name": "Berry Essence",
-          "price": 1500,
-          "image": "/products/fruity2.jpg",
-          "description": "Sweet berries blended with soft floral notes, a playful and youthful scent.",
-          "type": "Fruity",
-          "qty": 1
-        }
-      ],
-      "total": 1500,
-      "shipping": {
-        "name": "Rihaan Shehariyar",
-        "address": "Thikkodi Panchayath calicut kerala\nLove Dale HO",
-        "phone": "8921996927",
-        "paymentMethod": "upi"
-      },
-      "status": "Pending",
-      "date": "2025-10-03T04:45:51.557Z"
-    },
-    {
-      "id": 1759467656970,
-      "userId": "1",
-      "products": [
-        {
-          "id": "12",
-          "name": "Sandalwood Whisper",
-          "price": 1500,
-          "image": "/products/woody2.jpg",
-          "description": "Soft sandalwood aroma blended with subtle spices for a rich, calming scent.",
-          "type": "Woody",
-          "qty": 1
-        }
-      ],
-      "total": 1500,
-      "shipping": {
-        "name": "Rihaan Shehariyar",
-        "address": "Thikkodi Panchayath calicut kerala\nLove Dale HO",
-        "phone": "08921996927",
-        "paymentMethod": "cod"
-      },
-      "status": "Pending",
-      "date": "2025-10-03T05:00:56.970Z"
-    },
-    {
-      "id": 1759468142860,
-      "userId": "1",
-      "products": [
-        {
-          "id": "12",
-          "name": "Sandalwood Whisper",
-          "price": 1500,
-          "image": "/products/woody2.jpg",
-          "description": "Soft sandalwood aroma blended with subtle spices for a rich, calming scent.",
-          "type": "Woody",
-          "qty": 1
-        }
-      ],
-      "total": 1500,
-      "shipping": {
-        "name": "Rihaan Shehariyar",
-        "address": "Thikkodi Panchayath calicut kerala\nLove Dale HO",
-        "phone": "08921996927",
-        "paymentMethod": "upi"
-      },
-      "status": "Pending",
-      "date": "2025-10-03T05:09:02.860Z"
-    },
-    {
-      "id": 1759468156165,
-      "userId": "1",
-      "products": [
-        {
-          "id": "12",
-          "name": "Sandalwood Whisper",
-          "price": 1500,
-          "image": "/products/woody2.jpg",
-          "description": "Soft sandalwood aroma blended with subtle spices for a rich, calming scent.",
-          "type": "Woody",
-          "qty": 1
-        }
-      ],
-      "total": 1500,
-      "shipping": {
-        "name": "Rihaan Shehariyar",
-        "address": "Thikkodi Panchayath calicut kerala\nLove Dale HO",
-        "phone": "08921996927",
-        "paymentMethod": "upi"
-      },
-      "status": "Pending",
-      "date": "2025-10-03T05:09:16.165Z"
-    },
-    {
-      "id": 1759468412490,
-      "userId": "1",
-      "products": [
-        {
-          "id": "8",
-          "name": "Tropical Rush",
-          "price": 999,
-          "image": "/products/fruity3.jpg",
-          "description": "Tropical fruits with a hint of coconut for a sunny, vibrant aroma.",
-          "type": "Fruity",
-          "qty": 1
-        }
-      ],
-      "total": 999,
-      "shipping": {
-        "name": "Rihaan Shehariyar",
-        "address": "Thikkodi Panchayath calicut kerala\nLove Dale HO",
-        "phone": "8921996927",
-        "paymentMethod": "cod"
-      },
-      "status": "Pending",
-      "paymentMethod": "cod",
-      "date": "2025-10-03T05:13:32.490Z"
-    },
-    {
-      "id": 1759468424173,
-      "userId": "1",
-      "products": [
-        {
-          "id": "8",
-          "name": "Tropical Rush",
-          "price": 999,
-          "image": "/products/fruity3.jpg",
-          "description": "Tropical fruits with a hint of coconut for a sunny, vibrant aroma.",
-          "type": "Fruity",
-          "qty": 1
-        }
-      ],
-      "total": 999,
-      "shipping": {
-        "name": "Rihaan Shehariyar",
-        "address": "Thikkodi Panchayath calicut kerala\nLove Dale HO",
-        "phone": "8921996927",
-        "paymentMethod": "upi"
-      },
-      "status": "Pending",
-      "paymentMethod": "upi",
-      "date": "2025-10-03T05:13:44.173Z"
-    },
-    {
-      "id": 1759468484983,
-      "userId": "1",
-      "products": [
-        {
-          "id": "3",
-          "name": "Lily Dream",
-          "price": 999,
-          "image": "/products/floral3.jpg",
-          "description": "Soft lily notes combined with jasmine and a touch of citrus, perfect for daily wear.",
-          "type": "Floral",
-          "qty": 1
-        }
-      ],
-      "total": 999,
-      "shipping": {
-        "name": "Rihaan Shehariyar",
-        "address": "Thikkodi Panchayath calicut kerala\nLove Dale HO",
-        "phone": "8921996927",
-        "paymentMethod": "card"
-      },
-      "status": "Pending",
-      "paymentMethod": "card",
-      "date": "2025-10-03T05:14:44.983Z"
-    },
-    {
-      "id": 1759468625417,
-      "userId": "1",
-      "products": [
-        {
-          "id": "8",
-          "name": "Tropical Rush",
-          "price": 999,
-          "image": "/products/fruity3.jpg",
-          "description": "Tropical fruits with a hint of coconut for a sunny, vibrant aroma.",
-          "type": "Fruity",
-          "qty": 1
-        }
-      ],
-      "total": 999,
-      "shipping": {
-        "name": "njenj",
-        "address": "Thikkodi Panchayath,calicut,kerala\nLove Dale(HO)",
-        "phone": "235325325",
-        "paymentMethod": "upi"
-      },
-      "status": "Pending",
-      "paymentMethod": "upi",
-      "date": "2025-10-03T05:17:05.417Z"
-    },
-    {
-      "id": 1759468894238,
-      "userId": "1",
-      "products": [
-        {
-          "id": "8",
-          "name": "Tropical Rush",
-          "price": 999,
-          "image": "/products/fruity3.jpg",
-          "description": "Tropical fruits with a hint of coconut for a sunny, vibrant aroma.",
-          "type": "Fruity",
-          "qty": 1
-        }
-      ],
-      "total": 999,
-      "shipping": {
-        "name": "Rihaan Shehariyar",
-        "address": "Thikkodi Panchayath calicut kerala\nLove Dale HO",
-        "phone": "08921996927",
-        "paymentMethod": "upi"
-      },
-      "status": "Pending",
-      "paymentMethod": "upi",
-      "date": "2025-10-03T05:21:34.238Z"
-    },
-    {
-      "id": 1759470779685,
-      "userId": "33d1",
-      "products": [
-        {
-          "id": "2",
-          "name": "Rose Enchanté",
-          "price": 1500,
-          "image": "/products/floral2.jpg",
-          "description": "Romantic rose aroma blended with subtle hints of vanilla and musk for a timeless scent.",
-          "type": "Floral",
-          "qty": 1
-        }
-      ],
-      "total": 1500,
-      "shipping": {
-        "name": "Zehaan",
-        "address": "Thikkodi Panchayath calicut kerala\nLove Dale HO",
-        "phone": "8921996927",
-        "paymentMethod": "cod"
-      },
-      "status": "Pending",
-      "paymentMethod": "cod",
-      "date": "2025-10-03T05:52:59.685Z"
-    },
-    {
-      "id": 1759485483156,
-      "userId": "1",
-      "products": [
-        {
-          "id": "7",
-          "name": "Berry Essence",
-          "price": 1500,
-          "image": "/products/fruity2.jpg",
-          "description": "Sweet berries blended with soft floral notes, a playful and youthful scent.",
-          "type": "Fruity",
-          "qty": 1
-        }
-      ],
-      "total": 1500,
-      "shipping": {
-        "name": "Rihaan Shehariyar",
-        "address": "Thikkodi Panchayath calicut kerala\nLove Dale HO",
-        "phone": "8921996927",
-        "paymentMethod": "upi"
-      },
-      "status": "Pending",
-      "paymentMethod": "upi",
-      "date": "2025-10-03T09:58:03.156Z"
-    },
-    {
-      "id": 1759485483156,
-      "userId": "1",
-      "products": [
-        {
-          "id": "7",
-          "name": "Berry Essence",
-          "price": 1500,
-          "image": "/products/fruity2.jpg",
-          "description": "Sweet berries blended with soft floral notes, a playful and youthful scent.",
-          "type": "Fruity",
-          "qty": 1
-        }
-      ],
-      "total": 1500,
-      "shipping": {
-        "name": "Rihaan Shehariyar",
-        "address": "Thikkodi Panchayath calicut kerala\nLove Dale HO",
-        "phone": "8921996927",
-        "paymentMethod": "upi"
-      },
-      "status": "Pending",
-      "paymentMethod": "upi",
-      "date": "2025-10-03T09:58:03.156Z"
-    },
-    {
-      "id": 1759487890895,
-      "userId": "1",
-      "products": [
-        {
-          "id": "4",
-          "name": "Violet Mist",
-          "price": 2000,
-          "image": "/products/floral4.jpg",
-          "description": "Fresh violet fragrance with green accords, bringing a light and airy sensation.",
-          "type": "Floral",
-          "qty": 1
-        }
-      ],
-      "total": 2000,
-      "shipping": {
-        "name": "Rihaan Shehariyar",
-        "address": "Thikkodi Panchayath calicut kerala\nLove Dale HO",
-        "phone": "8921996927",
-        "paymentMethod": "cod"
-      },
-      "status": "Pending",
-      "paymentMethod": "cod",
-      "date": "2025-10-03T10:38:10.895Z"
-    }
-  ]
+  {
+    "id": "1759389579857",
+    "userId": "1",
+    "products": [
+      { "id": "3", "name": "Lily Dream", "price": 999, "image": "/products/floral3.jpg", "description": "Soft lily notes combined with jasmine and a touch of citrus, perfect for daily wear.", "type": "Floral", "qty": 1 }
+    ],
+    "total": 999,
+    "date": "2025-10-02T07:19:39.857Z",
+    "shipping": { "name": "Rihaan Shehariyar", "address": "Thikkodi Panchayath calicut kerala\nLove Dale HO", "phone": "8921996927", "paymentMethod": "cod" },
+    "status": "Pending"
+  },
+  {
+    "id": "1759390116024",
+    "userId": "1",
+    "products": [
+      { "id": "1", "name": "Jasmine Whisper", "price": 1200, "image": "/products/floral1.jpg", "description": "A delicate floral fragrance with top notes of jasmine and lily, evoking freshness and elegance.", "type": "Floral", "qty": 1 }
+    ],
+    "total": 1200,
+    "date": "2025-10-02T07:28:36.024Z",
+    "shipping": { "name": "Rihaan Shehariyar", "address": "Thikkodi Panchayath calicut kerala\nLove Dale HO", "phone": "8921996927", "paymentMethod": "cod" },
+    "status": "Pending"
+  },
+  {
+    "id": "1759466751557",
+    "userId": "1",
+    "products": [
+      { "id": "7", "name": "Berry Essence", "price": 1500, "image": "/products/fruity2.jpg", "description": "Sweet berries blended with soft floral notes, a playful and youthful scent.", "type": "Fruity", "qty": 1 }
+    ],
+    "total": 1500,
+    "date": "2025-10-03T04:45:51.557Z",
+    "shipping": { "name": "Rihaan Shehariyar", "address": "Thikkodi Panchayath calicut kerala\nLove Dale HO", "phone": "8921996927", "paymentMethod": "upi" },
+    "status": "Pending"
+  },
+  {
+    "id": "1759500000000",
+    "userId": "2",
+    "products": [
+      { "id": "2", "name": "Rose Enchanté", "price": 1500, "image": "/products/floral2.jpg", "description": "Romantic rose aroma blended with subtle hints of vanilla and musk for a timeless scent.", "type": "Floral", "qty": 1 }
+    ],
+    "total": 1500,
+    "date": "2025-10-04T10:15:00.000Z",
+    "shipping": { "name": "John Doe", "address": "Bangalore, Karnataka", "phone": "9876543210", "paymentMethod": "cod" },
+    "status": "Pending"
+  },
+  {
+    "id": "1759501111111",
+    "userId": "3",
+    "products": [
+      { "id": "8", "name": "Tropical Rush", "price": 999, "image": "/products/fruity3.jpg", "description": "Tropical fruits with a hint of coconut for a sunny, vibrant aroma.", "type": "Fruity", "qty": 2 }
+    ],
+    "total": 1998,
+    "date": "2025-10-05T13:20:00.000Z",
+    "shipping": { "name": "Zehaan", "address": "Kochi, Kerala", "phone": "9123456780", "paymentMethod": "card" },
+    "status": "Processing"
+  },
+  {
+    "id": "1759502222222",
+    "userId": "4",
+    "products": [
+      { "id": "12", "name": "Sandalwood Whisper", "price": 1500, "image": "/products/woody2.jpg", "description": "Soft sandalwood aroma blended with subtle spices for a rich, calming scent.", "type": "Woody", "qty": 1 }
+    ],
+    "total": 1500,
+    "date": "2025-10-06T09:00:00.000Z",
+    "shipping": { "name": "Ava Smith", "address": "Mumbai, Maharashtra", "phone": "9988776655", "paymentMethod": "upi" },
+    "status": "Pending"
+  },
+  {
+    "id": "1759503333333",
+    "userId": "5",
+    "products": [
+      { "id": "4", "name": "Violet Mist", "price": 2000, "image": "/products/floral4.jpg", "description": "Fresh violet fragrance with green accords, bringing a light and airy sensation.", "type": "Floral", "qty": 1 }
+    ],
+    "total": 2000,
+    "date": "2025-10-06T11:30:00.000Z",
+    "shipping": { "name": "Liam Brown", "address": "Delhi", "phone": "9871234567", "paymentMethod": "cod" },
+    "status": "Pending"
+  }
+]
 }

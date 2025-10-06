@@ -45,7 +45,7 @@ const ProductCard = React.memo(({ product, isLiked, onWishlistToggle }) => (
     </div>
 
     <Link to={`/products/${product.id}`} className="hover:text-indigo-600 transition-colors no-underline" style={{textDecoration: "none"}}>
-      <h3 className="text-lg font-semibold text-gray-900 tracking-tight" s>{product.name}</h3>
+      <h3 className="text-lg font-semibold text-gray-900 tracking-tight" >{product.name}</h3>
     </Link>
 
     <p className="text-indigo-700 font-bold mt-2 text-lg">₹ {product.price}</p>
@@ -113,11 +113,11 @@ function Home() {
             pagination={{ clickable: true }}
             className="w-full"
           >
-            {["banner3.jpg", "banner5.jpg", "banner6.jpg"].map((img, idx) => (
+            {["banner5.jpg", "banner3.jpg", "banner6.jpg"].map((img, idx) => (
               <SwiperSlide key={idx}>
                 <div className="w-full aspect-[16/9]">
                   <img
-                    src={`/public/${img}`}
+                    src={`/${img}`}
                     alt={`Banner ${idx + 1}`}
                     className="w-full h-full object-contain object-center rounded-xl shadow-lg"
                     loading="lazy"
