@@ -21,10 +21,16 @@ const Login = () => {
       );
 
       if (res.data.length > 0) {
-        const userData = res.data[0]; // ✅ get the logged-in user
-        login(userData); // ✅ save user in context & localStorage
+        const userData = res.data[0]; 
+        if(userData.role === "admin" ){
+          navigate("/admin")
+        }
+        else{
+
+        login(userData); 
         alert('Login Successful');
         navigate('/home');
+        }
       } else {
         alert('Invalid email or password');
       }
@@ -83,7 +89,7 @@ const Login = () => {
                   Skip for now
                 </button>
               </form>
-              <p className="text-center mt-3">
+              <p className="text-center mt-3 ">
                 Don't have an account?{' '}
                 <span
                   className="text-success"

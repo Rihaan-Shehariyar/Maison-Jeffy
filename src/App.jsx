@@ -71,6 +71,8 @@ function AppContent() {
         {/* admin page */}
 
          <Route path='/admin' element={<AdminLayout />} >
+         <Route index element = {<AdminDashboard />} />
+
          <Route path='dashboard' element={<AdminDashboard />} />
          <Route path='admin-products' element={<AdminProducts />} />
 

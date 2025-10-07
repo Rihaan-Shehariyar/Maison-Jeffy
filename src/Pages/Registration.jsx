@@ -8,6 +8,7 @@ const Registration = () => {
     name: '',
     email: '',
     password: '',
+    role : "user"
   });
 
   const navigate = useNavigate(); // React Router hook

@@ -101,7 +101,8 @@ function Navbar() {
               placeholder="Search..."
               value={searchQuery}
               onChange={handleSearchChange}
-              className="border border-gray-300 rounded-full px-4 py-2 pr-10 focus:ring-2 focus:ring-indigo-500 shadow-sm w-full transition-all"
+              className="border border-[#1e3a8a] rounded-full px-4 py-2 pr-10 focus:ring-2 focus:ring-[#3b82f6] shadow-sm w-full transition-all"
+
             />
             <FontAwesomeIcon
               icon={faMagnifyingGlass}
@@ -167,7 +168,7 @@ function Navbar() {
           {/* Login/Logout Button */}
           {!user ? (
             <Link to="/login">
-              <button className="px-4 py-1 bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-full shadow hover:scale-105 transition">
+              <button  className="px-4 py-1 bg-gradient-to-r from-[#1e3a8a] to-[#3b82f6] text-white rounded-full shadow hover:scale-105 transition">
                 Log In
               </button>
             </Link>
@@ -182,7 +183,7 @@ function Navbar() {
 
           {/* Mobile Menu */}
           <button className="md:hidden ml-2" onClick={() => setMenuOpen(!menuOpen)}>
-            <FontAwesomeIcon icon={menuOpen ? faXmark : faBars} className="text-gray-700 text-xl"/>
+            <FontAwesomeIcon icon={menuOpen ? faXmark : faBars} clas sName="text-gray-700 text-xl"/>
           </button>
         </div>
       </div>
@@ -192,9 +193,9 @@ function Navbar() {
         <div className="md:hidden bg-white/90 backdrop-blur-md shadow-md px-6 py-4 flex flex-col gap-4 animate-slideDown">
           {["Home", "Catalog", "Orders"].map((item, idx) => (
             <Link
-              key={idx}
-              to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-              className="text-gray-700 font-medium hover:text-indigo-600 transition"
+              key = {idx}
+              to = {item === "Home" ? "/" : `/${item.toLowerCase()}`}
+              className = "text-gray-700 font-medium hover:text-indigo-600 transition"
               onClick={() => setMenuOpen(false)}
             >
               {item}

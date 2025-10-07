@@ -10,7 +10,7 @@ import "swiper/css/pagination";
 
 // Memoized ProductCard to prevent unnecessary re-renders
 const ProductCard = React.memo(({ product, isLiked, onWishlistToggle }) => (
-  <div className="relative flex flex-col items-center text-center group bg-white rounded-lg shadow hover:shadow-lg transition-shadow duration-300 p-4">
+  <div className="relative flex flex-col items-center text-center group bg-[#1e293b] rounded-lg shadow hover:shadow-lg transition-shadow duration-300 p-4 ">
   
    {/* Featured Badge */}
     {product.featured && (
@@ -102,7 +102,7 @@ function Home() {
   }
 
   return (
-    <div className="bg-gradient-to-b from-pink-50 to-white min-h-screen font-sans">
+    <div className=" min-h-screen font-sans">
       {/* Hero Banner */}
       {!searchQuery && (
         <section className="w-full mb-12">

@@ -7,7 +7,7 @@
 }
 body {
   font-family: 'Inter', sans-serif;
-  background-color: #f5f5f5; /* soft neutral background */
+  background-color: #0f172a; /* soft neutral background */
   color: #1a1a1a; /* dark text for readability */
   line-height: 1.6;
   
@@ -15,15 +15,15 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
-  color: #111;
+  color: white;
 }
 
 p, span, li, input, textarea, select, button {
   font-weight: 400;
-  color: #1a1a1a;
+  color: #ffff;
 }
 .card, .max-w-4xl {
-  background-color: #ffffff;
+  background-color: #ffff;
   border-radius: 12px;
   padding: 2rem;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
@@ -37,7 +37,7 @@ ul.divide-y > li {
   align-items: center;
 }
 button {
-  background-color: #047857; /* deep emerald green */
+  background-color: #334155; 
   color: #fff;
   padding: 0.75rem 1.5rem;
   border-radius: 8px;
@@ -46,7 +46,7 @@ button {
 }
 
 button:hover {
-  background-color: #065f46; /* darker green on hover */
+  background-color: #0ea5e9; 
   transform: translateY(-1px);
 }
 

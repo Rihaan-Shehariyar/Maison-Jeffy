@@ -1,10 +1,40 @@
 {
-   "users": [
-    { "id": "1", "name": "Rihaan Shehariyar", "email": "rihaanshehariyar@gmail.com", "password": "Rihaan@2" },
-    { "id": "2", "name": "John Doe", "email": "john@gmail.com", "password": "John@123" },
-    { "id": "3", "name": "Zehaan", "email": "zehaan@gmail.com", "password": "Zehan@2022" },
-    { "id": "4", "name": "Ava Smith", "email": "ava@gmail.com", "password": "Ava@2022" },
-    { "id": "5", "name": "Liam Brown", "email": "liam@gmail.com", "password": "Liam@2022" }
+  "users": [
+    {
+      "id": "1",
+      "name": "Rihaan Shehariyar",
+      "email": "rihaanshehariyar@gmail.com",
+      "password": "Rihaan@2",
+      "role": "user"
+    },
+    {
+      "id": "2",
+      "name": "John Doe",
+      "email": "john@gmail.com",
+      "password": "John@123",
+      "role": "user"
+    },
+    {
+      "id": "3",
+      "name": "Zehaan",
+      "email": "zehaan@gmail.com",
+      "password": "Zehan@2022",
+      "role": "user"
+    },
+    {
+      "id": "4",
+      "name": "Ava Smith",
+      "email": "ava@gmail.com",
+      "password": "Ava@2022",
+      "role": "user"
+    },
+    {
+      "id": "5",
+      "name": "Admin",
+      "email": "admin@gmail.com",
+      "password": "admin@2004",
+      "role": "admin"
+    }
   ],
   "products": [
     {
@@ -14,7 +44,7 @@
       "image": "/products/floral1.jpg",
       "description": "A delicate floral fragrance with top notes of jasmine and lily, evoking freshness and elegance.",
       "type": "Floral",
-      "featured" : false
+      "featured": false
     },
     {
       "id": "2",
@@ -23,7 +53,7 @@
       "image": "/products/floral2.jpg",
       "description": "Romantic rose aroma blended with subtle hints of vanilla and musk for a timeless scent.",
       "type": "Floral",
-      "featured" : true
+      "featured": true
     },
     {
       "id": "3",
@@ -32,7 +62,7 @@
       "image": "/products/floral3.jpg",
       "description": "Soft lily notes combined with jasmine and a touch of citrus, perfect for daily wear.",
       "type": "Floral",
-      "featured" : false
+      "featured": false
     },
     {
       "id": "4",
@@ -41,8 +71,7 @@
       "image": "/products/floral4.jpg",
       "description": "Fresh violet fragrance with green accords, bringing a light and airy sensation.",
       "type": "Floral",
-      "featured" : true
-
+      "featured": true
     },
     {
       "id": "6",
@@ -87,7 +116,7 @@
       "image": "/products/woody1.jpg",
       "description": "Warm cedarwood with earthy undertones, a soothing and grounded fragrance.",
       "type": "Woody",
-      "featured":false
+      "featured": false
     },
     {
       "id": "12",
@@ -96,7 +125,7 @@
       "image": "/products/woody2.jpg",
       "description": "Soft sandalwood aroma blended with subtle spices for a rich, calming scent.",
       "type": "Woody",
-      "featured":true
+      "featured": true
     },
     {
       "id": "13",
@@ -105,7 +134,7 @@
       "image": "/products/woody3.jpg",
       "description": "Earthy oak and amber with hints of musk, a deep and masculine fragrance.",
       "type": "Woody",
-      "featured":false
+      "featured": false
     },
     {
       "id": "14",
@@ -114,7 +143,7 @@
       "image": "/products/woody4.jpg",
       "description": "Green forest notes with earthy undertones, evoking nature's serenity.",
       "type": "Woody",
-      "featured":true
+      "featured": true
     },
     {
       "id": "16",
@@ -123,7 +152,7 @@
       "image": "/products/oriental1.jpg",
       "description": "Rich amber and vanilla with a warm, sensual aroma.",
       "type": "Oriental",
-      "featured":false
+      "featured": false
     },
     {
       "id": "17",
@@ -132,7 +161,7 @@
       "image": "/products/oriental2.jpg",
       "description": "Exotic saffron blended with soft floral notes for a luxurious scent.",
       "type": "Oriental",
-      "featured":true
+      "featured": true
     },
     {
       "id": "18",
@@ -141,7 +170,7 @@
       "image": "/products/oriental3.jpg",
       "description": "A vibrant mix of spices with a hint of amber for an alluring fragrance.",
       "type": "Oriental",
-      "featured":false
+      "featured": false
     },
     {
       "id": "19",
@@ -150,7 +179,7 @@
       "image": "/products/oriental4.jpg",
       "description": "Soft vanilla with warm undertones, a comforting and sensual scent.",
       "type": "Oriental",
-      "featured":true
+      "featured": true
     },
     {
       "id": "21",
@@ -159,8 +188,7 @@
       "image": "/products/fresh1.jpg",
       "description": "Refreshing oceanic notes with hints of citrus, perfect for summer.",
       "type": "Fresh",
-      "featured":false
-
+      "featured": false
     },
     {
       "id": "22",
@@ -169,8 +197,7 @@
       "image": "/products/fresh2.jpg",
       "description": "Light aquatic fragrance with a crisp and clean sensation.",
       "type": "Fresh",
-       "featured":false
-
+      "featured": false
     },
     {
       "id": "23",
@@ -179,8 +206,7 @@
       "image": "/products/fresh3.jpg",
       "description": "Pure aquatic notes with subtle floral hints, evoking serenity.",
       "type": "Fresh",
-      "featured":true
-
+      "featured": true
     },
     {
       "id": "24",
@@ -189,87 +215,281 @@
       "image": "/products/fresh4.jpg",
       "description": "Fresh sea breeze combined with soft floral undertones for a calming effect.",
       "type": "Fresh",
-      "featured":true
-
+      "featured": true
     }
   ],
   "orders": [
-  {
-    "id": "1759389579857",
-    "userId": "1",
-    "products": [
-      { "id": "3", "name": "Lily Dream", "price": 999, "image": "/products/floral3.jpg", "description": "Soft lily notes combined with jasmine and a touch of citrus, perfect for daily wear.", "type": "Floral", "qty": 1 }
-    ],
-    "total": 999,
-    "date": "2025-10-02T07:19:39.857Z",
-    "shipping": { "name": "Rihaan Shehariyar", "address": "Thikkodi Panchayath calicut kerala\nLove Dale HO", "phone": "8921996927", "paymentMethod": "cod" },
-    "status": "Pending"
-  },
-  {
-    "id": "1759390116024",
-    "userId": "1",
-    "products": [
-      { "id": "1", "name": "Jasmine Whisper", "price": 1200, "image": "/products/floral1.jpg", "description": "A delicate floral fragrance with top notes of jasmine and lily, evoking freshness and elegance.", "type": "Floral", "qty": 1 }
-    ],
-    "total": 1200,
-    "date": "2025-10-02T07:28:36.024Z",
-    "shipping": { "name": "Rihaan Shehariyar", "address": "Thikkodi Panchayath calicut kerala\nLove Dale HO", "phone": "8921996927", "paymentMethod": "cod" },
-    "status": "Pending"
-  },
-  {
-    "id": "1759466751557",
-    "userId": "1",
-    "products": [
-      { "id": "7", "name": "Berry Essence", "price": 1500, "image": "/products/fruity2.jpg", "description": "Sweet berries blended with soft floral notes, a playful and youthful scent.", "type": "Fruity", "qty": 1 }
-    ],
-    "total": 1500,
-    "date": "2025-10-03T04:45:51.557Z",
-    "shipping": { "name": "Rihaan Shehariyar", "address": "Thikkodi Panchayath calicut kerala\nLove Dale HO", "phone": "8921996927", "paymentMethod": "upi" },
-    "status": "Pending"
-  },
-  {
-    "id": "1759500000000",
-    "userId": "2",
-    "products": [
-      { "id": "2", "name": "Rose Enchanté", "price": 1500, "image": "/products/floral2.jpg", "description": "Romantic rose aroma blended with subtle hints of vanilla and musk for a timeless scent.", "type": "Floral", "qty": 1 }
-    ],
-    "total": 1500,
-    "date": "2025-10-04T10:15:00.000Z",
-    "shipping": { "name": "John Doe", "address": "Bangalore, Karnataka", "phone": "9876543210", "paymentMethod": "cod" },
-    "status": "Pending"
-  },
-  {
-    "id": "1759501111111",
-    "userId": "3",
-    "products": [
-      { "id": "8", "name": "Tropical Rush", "price": 999, "image": "/products/fruity3.jpg", "description": "Tropical fruits with a hint of coconut for a sunny, vibrant aroma.", "type": "Fruity", "qty": 2 }
-    ],
-    "total": 1998,
-    "date": "2025-10-05T13:20:00.000Z",
-    "shipping": { "name": "Zehaan", "address": "Kochi, Kerala", "phone": "9123456780", "paymentMethod": "card" },
-    "status": "Processing"
-  },
-  {
-    "id": "1759502222222",
-    "userId": "4",
-    "products": [
-      { "id": "12", "name": "Sandalwood Whisper", "price": 1500, "image": "/products/woody2.jpg", "description": "Soft sandalwood aroma blended with subtle spices for a rich, calming scent.", "type": "Woody", "qty": 1 }
-    ],
-    "total": 1500,
-    "date": "2025-10-06T09:00:00.000Z",
-    "shipping": { "name": "Ava Smith", "address": "Mumbai, Maharashtra", "phone": "9988776655", "paymentMethod": "upi" },
-    "status": "Pending"
-  },
-  {
-    "id": "1759503333333",
-    "userId": "5",
-    "products": [
-      { "id": "4", "name": "Violet Mist", "price": 2000, "image": "/products/floral4.jpg", "description": "Fresh violet fragrance with green accords, bringing a light and airy sensation.", "type": "Floral", "qty": 1 }
-    ],
-    "total": 2000,
-    "date": "2025-10-06T11:30:00.000Z",
-    "shipping": { "name": "Liam Brown", "address": "Delhi", "phone": "9871234567", "paymentMethod": "cod" },
-    "status": "Pending"
-  }
-]
+    {
+      "id": "1759389579857",
+      "userId": "1",
+      "products": [
+        {
+          "id": "3",
+          "name": "Lily Dream",
+          "price": 999,
+          "image": "/products/floral3.jpg",
+          "description": "Soft lily notes combined with jasmine and a touch of citrus, perfect for daily wear.",
+          "type": "Floral",
+          "qty": 1
+        }
+      ],
+      "total": 999,
+      "date": "2025-10-02T07:19:39.857Z",
+      "shipping": {
+        "name": "Rihaan Shehariyar",
+        "address": "Thikkodi Panchayath calicut kerala\nLove Dale HO",
+        "phone": "8921996927",
+        "paymentMethod": "cod"
+      },
+      "status": "Pending"
+    },
+    {
+      "id": "1759390116024",
+      "userId": "1",
+      "products": [
+        {
+          "id": "1",
+          "name": "Jasmine Whisper",
+          "price": 1200,
+          "image": "/products/floral1.jpg",
+          "description": "A delicate floral fragrance with top notes of jasmine and lily, evoking freshness and elegance.",
+          "type": "Floral",
+          "qty": 1
+        }
+      ],
+      "total": 1200,
+      "date": "2025-10-02T07:28:36.024Z",
+      "shipping": {
+        "name": "Rihaan Shehariyar",
+        "address": "Thikkodi Panchayath calicut kerala\nLove Dale HO",
+        "phone": "8921996927",
+        "paymentMethod": "cod"
+      },
+      "status": "Pending"
+    },
+    {
+      "id": "1759466751557",
+      "userId": "1",
+      "products": [
+        {
+          "id": "7",
+          "name": "Berry Essence",
+          "price": 1500,
+          "image": "/products/fruity2.jpg",
+          "description": "Sweet berries blended with soft floral notes, a playful and youthful scent.",
+          "type": "Fruity",
+          "qty": 1
+        }
+      ],
+      "total": 1500,
+      "date": "2025-10-03T04:45:51.557Z",
+      "shipping": {
+        "name": "Rihaan Shehariyar",
+        "address": "Thikkodi Panchayath calicut kerala\nLove Dale HO",
+        "phone": "8921996927",
+        "paymentMethod": "upi"
+      },
+      "status": "Pending"
+    },
+    {
+      "id": "1759500000000",
+      "userId": "2",
+      "products": [
+        {
+          "id": "2",
+          "name": "Rose Enchanté",
+          "price": 1500,
+          "image": "/products/floral2.jpg",
+          "description": "Romantic rose aroma blended with subtle hints of vanilla and musk for a timeless scent.",
+          "type": "Floral",
+          "qty": 1
+        }
+      ],
+      "total": 1500,
+      "date": "2025-10-04T10:15:00.000Z",
+      "shipping": {
+        "name": "John Doe",
+        "address": "Bangalore, Karnataka",
+        "phone": "9876543210",
+        "paymentMethod": "cod"
+      },
+      "status": "Pending"
+    },
+    {
+      "id": "1759501111111",
+      "userId": "3",
+      "products": [
+        {
+          "id": "8",
+          "name": "Tropical Rush",
+          "price": 999,
+          "image": "/products/fruity3.jpg",
+          "description": "Tropical fruits with a hint of coconut for a sunny, vibrant aroma.",
+          "type": "Fruity",
+          "qty": 2
+        }
+      ],
+      "total": 1998,
+      "date": "2025-10-05T13:20:00.000Z",
+      "shipping": {
+        "name": "Zehaan",
+        "address": "Kochi, Kerala",
+        "phone": "9123456780",
+        "paymentMethod": "card"
+      },
+      "status": "Processing"
+    },
+    {
+      "id": "1759502222222",
+      "userId": "4",
+      "products": [
+        {
+          "id": "12",
+          "name": "Sandalwood Whisper",
+          "price": 1500,
+          "image": "/products/woody2.jpg",
+          "description": "Soft sandalwood aroma blended with subtle spices for a rich, calming scent.",
+          "type": "Woody",
+          "qty": 1
+        }
+      ],
+      "total": 1500,
+      "date": "2025-10-06T09:00:00.000Z",
+      "shipping": {
+        "name": "Ava Smith",
+        "address": "Mumbai, Maharashtra",
+        "phone": "9988776655",
+        "paymentMethod": "upi"
+      },
+      "status": "Pending"
+    },
+    {
+      "id": "1759503333333",
+      "userId": "5",
+      "products": [
+        {
+          "id": "4",
+          "name": "Violet Mist",
+          "price": 2000,
+          "image": "/products/floral4.jpg",
+          "description": "Fresh violet fragrance with green accords, bringing a light and airy sensation.",
+          "type": "Floral",
+          "qty": 1
+        }
+      ],
+      "total": 2000,
+      "date": "2025-10-06T11:30:00.000Z",
+      "shipping": {
+        "name": "Liam Brown",
+        "address": "Delhi",
+        "phone": "9871234567",
+        "paymentMethod": "cod"
+      },
+      "status": "Pending"
+    },
+    {
+      "id": 1759843171012,
+      "userId": "1",
+      "products": [
+        {
+          "id": "1",
+          "name": "Jasmine Whisper",
+          "price": 1200,
+          "image": "/products/floral1.jpg",
+          "description": "A delicate floral fragrance with top notes of jasmine and lily, evoking freshness and elegance.",
+          "type": "Floral",
+          "featured": false,
+          "qty": 1
+        }
+      ],
+      "total": 1200,
+      "shipping": {
+        "name": "Rihaan Shehariyar",
+        "address": "Thikkodi Panchayath calicut kerala\nLove Dale HO",
+        "phone": "8921996927",
+        "paymentMethod": "cod"
+      },
+      "status": "Pending",
+      "paymentMethod": "cod",
+      "date": "2025-10-07T13:19:31.012Z"
+    },
+    {
+      "id": 1759846018461,
+      "userId": "1",
+      "products": [
+        {
+          "id": "24",
+          "name": "Sea Whisper",
+          "price": 2000,
+          "image": "/products/fresh4.jpg",
+          "description": "Fresh sea breeze combined with soft floral undertones for a calming effect.",
+          "type": "Fresh",
+          "featured": true,
+          "qty": 1
+        }
+      ],
+      "total": 2000,
+      "shipping": {
+        "name": "Rihaan Shehariyar",
+        "address": "Thikkodi Panchayath calicut kerala\nLove Dale HO",
+        "phone": "8921996927",
+        "paymentMethod": "cod"
+      },
+      "status": "Pending",
+      "paymentMethod": "cod",
+      "date": "2025-10-07T14:06:58.461Z"
+    },
+    {
+      "id": 1759846069523,
+      "userId": "1",
+      "products": [
+        {
+          "id": "24",
+          "name": "Sea Whisper",
+          "price": 2000,
+          "image": "/products/fresh4.jpg",
+          "description": "Fresh sea breeze combined with soft floral undertones for a calming effect.",
+          "type": "Fresh",
+          "featured": true,
+          "qty": 1
+        }
+      ],
+      "total": 2000,
+      "shipping": {
+        "name": "Swalih",
+        "address": "chettaaaiyar maadu",
+        "phone": "123456789",
+        "paymentMethod": "upi"
+      },
+      "status": "Pending",
+      "paymentMethod": "upi",
+      "date": "2025-10-07T14:07:49.523Z"
+    },
+    {
+      "id": 1759846069523,
+      "userId": "1",
+      "products": [
+        {
+          "id": "24",
+          "name": "Sea Whisper",
+          "price": 2000,
+          "image": "/products/fresh4.jpg",
+          "description": "Fresh sea breeze combined with soft floral undertones for a calming effect.",
+          "type": "Fresh",
+          "featured": true,
+          "qty": 1
+        }
+      ],
+      "total": 2000,
+      "shipping": {
+        "name": "Swalih",
+        "address": "chettaaaiyar maadu",
+        "phone": "123456789",
+        "paymentMethod": "upi"
+      },
+      "status": "Pending",
+      "paymentMethod": "upi",
+      "date": "2025-10-07T14:07:49.523Z"
+    }
+  ]
 }

@@ -5,7 +5,7 @@ import { useAuth } from "../context/AuthContext";
 import { useWishlist } from "../context/WishlistContext"; 
 
 const ProductCard = React.memo(({ product, isLiked, onWishlistToggle }) => (
-  <div className="relative flex flex-col items-center text-center group bg-white rounded-lg shadow hover:shadow-lg transition-shadow duration-300 p-4">
+  <div className="relative flex flex-col items-center text-center group  rounded-lg shadow hover:shadow-lg transition-shadow duration-300 p-4">
     <div className="relative w-full h-64 mb-4 rounded-lg overflow-hidden">
       <Link to={`/products/${product.id}`}>
         <img
@@ -141,7 +141,7 @@ export default function Products(){
         className={`cursor-pointer font-semibold transition-colors ${
           selectedType === type
             ? "text-indigo-600"
-            : "text-gray-700 hover:text-indigo-500"
+            : "text-gray-300 hover:text-indigo-500"
         }`}
       >
         {type}
