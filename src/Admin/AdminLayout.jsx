@@ -16,8 +16,8 @@ export default function AdminLayout() {
   const menuItems = [
     { name: "Dashboard", path: "/admin/dashboard", icon: <FaTachometerAlt /> },
     { name: "Products", path: "/admin/admin-products", icon: <FaBoxOpen /> },
-    { name: "Orders", path: "/admin/orders", icon: <FaShoppingCart /> },
-    { name: "Customers", path: "/admin/customers", icon: <FaUsers /> },
+    { name: "Orders", path: "/admin/admin-orders", icon: <FaShoppingCart /> },
+    { name: "Customers", path: "/admin/admin-customers", icon: <FaUsers /> },
   ];
 
   return (

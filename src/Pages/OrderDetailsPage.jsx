@@ -27,7 +27,7 @@ const order = orders.find((o) => String(o.id) === String(id));
 
 
   return (
-    <div className="max-w-4xl mx-auto p-8 bg-white rounded-xl shadow-lg">
+    <div className="max-w-4xl mx-auto p-8 bg-black rounded-xl shadow-lg">
       <h2 className="text-2xl font-bold mb-4">Order Details</h2>
 
       <div className="mb-4">

@@ -241,7 +241,7 @@
         "phone": "8921996927",
         "paymentMethod": "cod"
       },
-      "status": "Pending"
+      "status": "Shipped"
     },
     {
       "id": "1759390116024",
@@ -388,33 +388,7 @@
       "status": "Pending"
     },
     {
-      "id": 1759843171012,
-      "userId": "1",
-      "products": [
-        {
-          "id": "1",
-          "name": "Jasmine Whisper",
-          "price": 1200,
-          "image": "/products/floral1.jpg",
-          "description": "A delicate floral fragrance with top notes of jasmine and lily, evoking freshness and elegance.",
-          "type": "Floral",
-          "featured": false,
-          "qty": 1
-        }
-      ],
-      "total": 1200,
-      "shipping": {
-        "name": "Rihaan Shehariyar",
-        "address": "Thikkodi Panchayath calicut kerala\nLove Dale HO",
-        "phone": "8921996927",
-        "paymentMethod": "cod"
-      },
-      "status": "Pending",
-      "paymentMethod": "cod",
-      "date": "2025-10-07T13:19:31.012Z"
-    },
-    {
-      "id": 1759846018461,
+      "id": "1759846018461",
       "userId": "1",
       "products": [
         {
@@ -440,33 +414,7 @@
       "date": "2025-10-07T14:06:58.461Z"
     },
     {
-      "id": 1759846069523,
-      "userId": "1",
-      "products": [
-        {
-          "id": "24",
-          "name": "Sea Whisper",
-          "price": 2000,
-          "image": "/products/fresh4.jpg",
-          "description": "Fresh sea breeze combined with soft floral undertones for a calming effect.",
-          "type": "Fresh",
-          "featured": true,
-          "qty": 1
-        }
-      ],
-      "total": 2000,
-      "shipping": {
-        "name": "Swalih",
-        "address": "chettaaaiyar maadu",
-        "phone": "123456789",
-        "paymentMethod": "upi"
-      },
-      "status": "Pending",
-      "paymentMethod": "upi",
-      "date": "2025-10-07T14:07:49.523Z"
-    },
-    {
-      "id": 1759846069523,
+      "id": "1759846069523",
       "userId": "1",
       "products": [
         {

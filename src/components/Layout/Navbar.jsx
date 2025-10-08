@@ -63,7 +63,7 @@ function Navbar() {
   };
 
   return (
-    <nav className="bg-white/70 backdrop-blur-md shadow-md sticky top-0 z-50 transition-all duration-300">
+    <nav className="bg-black/70 backdrop-blur-md shadow-md sticky top-0 z-50 transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between relative py-3">
 
         {/* Left Links */}
@@ -72,7 +72,7 @@ function Navbar() {
             <Link
               key={idx}
               to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-              className="relative text-gray-700 font-medium hover:text-indigo-600 transition group"
+              className="relative text-white font-medium hover:text-indigo-600 transition group"
             style={{textDecoration: "none",color : "black"}}>
               {item}
               <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-indigo-600 transition-all group-hover:w-full"></span>
@@ -112,11 +112,11 @@ function Navbar() {
 
             {/* Suggestions Dropdown */}
             {showSuggestions && suggestions.length > 0 && (
-              <ul className="absolute top-full left-0 w-full bg-white shadow-md rounded-md mt-1 z-50 max-h-64 overflow-y-auto">
+              <ul className="absolute top-full left-0 w-full bg-[#0f172a] shadow-md rounded-md mt-1 z-50 max-h-64 overflow-y-auto">
                 {suggestions.map(item => (
                   <li
                     key={item.id}
-                    className="flex items-center gap-3 px-4 py-2 cursor-pointer hover:bg-indigo-50 transition"
+                    className="flex items-center gap-3 px-4 py-2 cursor-pointer hover:bg-#333333 transition"
                     onClick={() => {
                       navigate(`/products/${item.id}`);
                       setSearch("");
@@ -165,25 +165,34 @@ function Navbar() {
             </div>
           )}
 
-          {/* Login/Logout Button */}
-          {!user ? (
-            <Link to="/login">
-              <button  className="px-4 py-1 bg-gradient-to-r from-[#1e3a8a] to-[#3b82f6] text-white rounded-full shadow hover:scale-105 transition">
-                Log In
-              </button>
-            </Link>
-          ) : (
-            <button
-              onClick={handleLogout}
-              className="px-4 py-1 bg-gradient-to-r from-red-500 to-pink-600 text-white rounded-full shadow hover:scale-105 transition"
-            >
-              Logout
-            </button>
-          )}
+         {/* Login/Logout Button */}
+{!user ? (
+  <Link to="/login">
+    <button
+      className="px-6 py-2 bg-gradient-to-r from-gray-900 via-gray-800 to-black
+                 text-white font-bold rounded-lg shadow-md 
+                 hover:shadow-[0_0_15px_#3b82f6] hover:text-blue-400 
+                 hover:scale-105 transition-all duration-300 ease-in-out"
+    >
+      Log In
+    </button>
+  </Link>
+) : (
+  <button
+    onClick={handleLogout}
+    className="px-6 py-2 bg-gradient-to-r from-gray-800 via-gray-900 to-black
+               text-white font-bold rounded-lg shadow-md 
+               hover:shadow-[0_0_15px_#64748b] hover:text-gray-300
+               hover:scale-105 transition-all duration-300 ease-in-out"
+  >
+    Logout
+  </button>
+)}
+
 
           {/* Mobile Menu */}
           <button className="md:hidden ml-2" onClick={() => setMenuOpen(!menuOpen)}>
-            <FontAwesomeIcon icon={menuOpen ? faXmark : faBars} clas sName="text-gray-700 text-xl"/>
+            <FontAwesomeIcon icon={menuOpen ? faXmark : faBars} className="text-gray-700 text-xl"/>
           </button>
         </div>
       </div>

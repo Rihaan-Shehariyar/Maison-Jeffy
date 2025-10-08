@@ -1,75 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
 @import "tailwindcss";
+
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  
 }
+
 body {
-  font-family: 'Inter', sans-serif;
-  background-color: #0f172a; /* soft neutral background */
-  color: #1a1a1a; /* dark text for readability */
-  line-height: 1.6;
-  
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  background: linear-gradient(135deg, #000000, #0d0d0d, #1a1a1a);
   color: white;
+  line-height: 1.6;
 }
 
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 900; /* extra bold */
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* subtle shadow for contrast */
+}
+
+/* Text & form elements */
 p, span, li, input, textarea, select, button {
   font-weight: 400;
-  color: #ffff;
+  color: #ffffff;
 }
+
+/* Cards */
 .card, .max-w-4xl {
-  background-color: #ffff;
+  background-color: #1f2937; /* darker card for bold contrast */
   border-radius: 12px;
   padding: 2rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3); /* stronger shadow */
 }
 
+/* Lists */
 ul.divide-y > li {
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid #374151; /* darker divider */
 }
 
+/* Flex helpers */
 .flex.justify-between {
   align-items: center;
 }
+
+/* Buttons */
 button {
-  background-color: #334155; 
+  background-color: #1e40af; /* deep blue for strong appearance */
   color: #fff;
   padding: 0.75rem 1.5rem;
   border-radius: 8px;
-  font-weight: 600;
+  font-weight: 700; /* bold text */
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
   transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
 button:hover {
-  background-color: #0ea5e9; 
-  transform: translateY(-1px);
+  background-color: #0ea5e9; /* bright hover */
+  transform: translateY(-2px) scale(1.02); /* subtle pop */
+  box-shadow: 0 6px 16px rgba(0,0,0,0.4);
 }
 
+/* Inputs & textareas */
 input, textarea, select {
-  border: 1px solid #ccc;
+  border: 1px solid #4b5563;
   border-radius: 8px;
   padding: 0.75rem;
   width: 100%;
   outline: none;
+  background-color: #111827;
+  color: #fff;
 }
 
 input:focus, textarea:focus, select:focus {
   border-color: #2563eb;
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.3);
 }
+
+/* Animations */
 @keyframes pop {
   0% { transform: scale(1); }
-  50% { transform: scale(1.4); }
+  50% { transform: scale(1.2); }
   100% { transform: scale(1); }
 }
 
 .animate-pop {
   animation: pop 0.3s ease forwards;
 }
-
-

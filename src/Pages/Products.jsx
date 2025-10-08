@@ -165,7 +165,7 @@ export default function Products(){
   <select
     value={sortOption}
     onChange={(e) => setSortOption(e.target.value)}
-    className="border rounded px-3 py-2 focus:outline-none"
+    className="border rounded px-3 py-2 focus:outline-none bg-black"
   >
     <option value="default">Sort By</option>
     <option value="price-asc">Price: Low to High</option>
