@@ -5,28 +5,24 @@
       "name": "Rihaan Shehariyar",
       "email": "rihaanshehariyar@gmail.com",
       "password": "Rihaan@2",
-      "role": "user"
+      "role": "user",
+      "status": "active"
     },
     {
       "id": "2",
       "name": "John Doe",
       "email": "john@gmail.com",
       "password": "John@123",
-      "role": "user"
+      "role": "user",
+      "status": "active"
     },
     {
       "id": "3",
       "name": "Zehaan",
       "email": "zehaan@gmail.com",
       "password": "Zehan@2022",
-      "role": "user"
-    },
-    {
-      "id": "4",
-      "name": "Ava Smith",
-      "email": "ava@gmail.com",
-      "password": "Ava@2022",
-      "role": "user"
+      "role": "user",
+      "status": "active"
     },
     {
       "id": "5",
@@ -34,6 +30,22 @@
       "email": "admin@gmail.com",
       "password": "admin@2004",
       "role": "admin"
+    },
+    {
+      "id": "876d",
+      "name": "neelaknadan",
+      "email": "neelakandan@gmail.com",
+      "password": "neelakandan@123",
+      "role": "user",
+      "status": "active"
+    },
+    {
+      "id": "ceac",
+      "name": "Rashad",
+      "email": "rashad@gmail.com",
+      "password": "Rashad@123",
+      "role": "user",
+      "status": "active"
     }
   ],
   "products": [
@@ -341,7 +353,7 @@
     },
     {
       "id": "1759502222222",
-      "userId": "4",
+      "userId": null,
       "products": [
         {
           "id": "12",
@@ -438,6 +450,68 @@
       "status": "Pending",
       "paymentMethod": "upi",
       "date": "2025-10-07T14:07:49.523Z"
+    },
+    {
+      "id": 1760000328952,
+      "userId": "1",
+      "products": [
+        {
+          "id": "12",
+          "name": "Sandalwood Whisper",
+          "price": 1500,
+          "image": "/products/woody2.jpg",
+          "description": "Soft sandalwood aroma blended with subtle spices for a rich, calming scent.",
+          "type": "Woody",
+          "featured": true,
+          "qty": 1
+        },
+        {
+          "id": "23",
+          "name": "Aqua Essence",
+          "price": 999,
+          "image": "/products/fresh3.jpg",
+          "description": "Pure aquatic notes with subtle floral hints, evoking serenity.",
+          "type": "Fresh",
+          "featured": true,
+          "qty": 1
+        }
+      ],
+      "total": 2499,
+      "shipping": {
+        "name": "Sports Hit",
+        "address": "Thikkodi Panchayath calicut kerala\nLove Dale HO",
+        "phone": "123654789",
+        "paymentMethod": "cod"
+      },
+      "status": "Pending",
+      "paymentMethod": "cod",
+      "date": "2025-10-09T08:58:48.952Z"
+    },
+    {
+      "id": 1760008588365,
+      "userId": "ceac",
+      "products": [
+        {
+          "id": "4",
+          "name": "Violet Mist",
+          "price": 2000,
+          "image": "/products/floral4.jpg",
+          "description": "Fresh violet fragrance with green accords, bringing a light and airy sensation.",
+          "type": "Floral",
+          "featured": true,
+          "qty": 1
+        }
+      ],
+      "total": 2000,
+      "shipping": {
+        "name": "Rashad",
+        "address": "Vengara",
+        "phone": "12345679",
+        "paymentMethod": "cod"
+      },
+      "status": "Pending",
+      "paymentMethod": "cod",
+      "date": "2025-10-09T11:16:28.365Z"
     }
   ]
 }

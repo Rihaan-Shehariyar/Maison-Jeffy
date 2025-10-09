@@ -7,7 +7,7 @@ export default function PaymentFailed() {
   const { order } = state || {};
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-red-50 to-white text-center p-6">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-black">
       <motion.div
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
@@ -32,13 +32,13 @@ export default function PaymentFailed() {
         </div>
       )}
 
-      <div className="flex gap-4">
-        <Link
-          to="/checkout"
+       <div className="flex gap-4"> 
+        {/* <Link
+          to="/chekout"
           className="bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition"
         >
           Retry Payment
-        </Link>
+        </Link>  */}
         <Link
           to="/"
           className="bg-gray-200 text-gray-800 px-6 py-3 rounded-lg font-semibold hover:bg-gray-300 transition"

@@ -154,7 +154,7 @@ export default function AdminProducts() {
           {filteredProducts.map((p) => (
             <div
               key={p.id}
-              className="bg-[#334155] text-white rounded-lg shadow-md p-3 flex flex-col border border"
+              className="bg-[#334155] text-white rounded-lg shadow-md p-3 flex flex-col border"
             >
               <img
                 src={p.image}

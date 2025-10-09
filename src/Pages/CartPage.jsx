@@ -22,7 +22,7 @@ function CartPage() {
             {cart.map((item) => (
               <li
                 key={item.id}
-                className="flex flex-col sm:flex-row justify-between items-center bg-gray-50 p-4 rounded-lg border"
+                className="flex flex-col sm:flex-row justify-between items-center bg-black p-4 rounded-lg border"
               >
                 <div className="flex items-center gap-4 flex-1">
                   <img

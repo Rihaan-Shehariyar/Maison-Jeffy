@@ -68,7 +68,7 @@ function Navbar() {
 
         {/* Left Links */}
         <div className="hidden md:flex items-center gap-8 flex-1">
-          {["Home", "Catalog", "Orders"].map((item, idx) => (
+          {["Home", "Catalog"].map((item, idx) => (
             <Link
               key={idx}
               to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
@@ -153,6 +153,11 @@ function Navbar() {
                 {cart.reduce((totalQty,item)=>totalQty+item.qty,0)}
               </span>
             )}
+          </Link>
+
+          <Link to ="/orders" onClick={(e)=> protectNavbar(e,"/cart")}   className="relative text-white font-medium hover:text-indigo-600 transition group"
+            style={{textDecoration: "none",color : "black"}}>
+          Orders
           </Link>
 
           {/* User Info */}

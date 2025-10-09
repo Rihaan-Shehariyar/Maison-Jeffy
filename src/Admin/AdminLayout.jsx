@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import {
   FaTachometerAlt,
   FaBoxOpen,
@@ -12,6 +12,7 @@ import {
 export default function AdminLayout() {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(true);
+  const navigate = useNavigate();
 
   const menuItems = [
     { name: "Dashboard", path: "/admin/dashboard", icon: <FaTachometerAlt /> },
@@ -30,8 +31,8 @@ export default function AdminLayout() {
       >
         {/* Header */}
         <div className="h-16 flex items-center justify-between px-4 border-b border-gray-700">
-          <h3 className={`text-lg font-bold tracking-wide transition-opacity ${isOpen ? "opacity-100" : "opacity-0"}`}>
-            Admin Panel
+          <h3 className={` relative top-2 text-lg font-bold tracking-wide transition-opacity ${isOpen ? "opacity-100" : "opacity-0"}`}>
+            Admin 
           </h3>
           <button onClick={() => setIsOpen(!isOpen)} className="text-xl text-gray-300 hover:text-yellow-300">
             <FaBars />
@@ -60,7 +61,7 @@ export default function AdminLayout() {
 
         {/* Footer / Logout */}
         <div className="p-4 border-t border-gray-700">
-          <button className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-md bg-red-600 hover:bg-red-700 text-white font-medium">
+          <button className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-md bg-red-600 hover:bg-red-700 text-white font-medium" onClick={()=>navigate('/home')}>
             <FaSignOutAlt /> {isOpen && "Logout"}
           </button>
         </div>

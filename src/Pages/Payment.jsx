@@ -22,7 +22,7 @@ export default function PaymentPage() {
   };
 
   return (
-    <div className="max-w-md mx-auto p-8 bg-white rounded-xl shadow-lg text-center">
+    <div className="max-w-md mx-auto p-8 bg-black rounded-xl shadow-lg text-center">
       <h2 className="text-2xl font-bold mb-4">Fake Payment Gateway</h2>
       <p className="mb-4">Total Amount: ₹{order.total}</p>
 

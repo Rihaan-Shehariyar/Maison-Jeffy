@@ -84,7 +84,7 @@ export default function CheckoutPage() {
     );
 
   return (
-    <div className="max-w-4xl mx-auto p-8 bg-white rounded-xl shadow-lg">
+    <div className="max-w-4xl mx-auto p-8 bg-black rounded-xl shadow-lg">
       <h2 className="text-3xl font-extrabold mb-8 text-gray-900 tracking-tight text-center">
         Checkout
       </h2>

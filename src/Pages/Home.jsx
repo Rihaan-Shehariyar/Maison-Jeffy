@@ -1,22 +1,40 @@
 import axios from "axios";
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useWishlist } from "../context/WishlistContext";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination } from "swiper/modules";
 import { motion } from "framer-motion";
-import "swiper/css";
-import "swiper/css/pagination";
 
-// ProductCard with reactive wishlist
-// ProductCard with 3D tilt
-const ProductCard = React.memo(({ product, wishlist, onWishlistToggle }) => {
-  const isLiked = wishlist.some((item) => item.id === product.id);
+// ProductCard Component
+const ProductCard = React.memo(({ product, isLiked, onWishlistToggle, delay = 0 }) => {
+  const cardRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    if (cardRef.current) observer.observe(cardRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <motion.div
-      className="relative flex flex-col items-center text-center group rounded-lg shadow p-4 bg-black cursor-pointer"
+      ref={cardRef}
+      className={`relative flex flex-col items-center text-center group 
+                  rounded-xl shadow-md p-4 bg-gradient-to-b from-gray-900 to-black 
+                  text-white transition-all duration-500 
+                  hover:shadow-[0_0_25px_#1e3a8a] hover:scale-105 
+                  ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
       whileHover={{
         scale: 1.05,
         rotateX: 5,
@@ -24,10 +42,10 @@ const ProductCard = React.memo(({ product, wishlist, onWishlistToggle }) => {
         transition: { type: "spring", stiffness: 200, damping: 15 },
       }}
       whileTap={{ scale: 0.95 }}
-      style={{ perspective: 1000 }} // for 3D effect
+      style={{ perspective: 1000, transitionDelay: `${delay * 100}ms` }}
     >
       {product.featured && (
-        <span className="absolute top-2 left-2 bg-yellow-400 text-white text-xs font-bold px-2 py-1 rounded z-10">
+        <span className="absolute top-2 left-2 bg-yellow-400 text-black text-xs font-bold px-2 py-1 rounded z-10">
           FEATURED
         </span>
       )}
@@ -38,12 +56,12 @@ const ProductCard = React.memo(({ product, wishlist, onWishlistToggle }) => {
             src={product.image}
             alt={product.name}
             loading="lazy"
-            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 rounded"
           />
         </Link>
 
         <button
-          onClick={(e) => {
+          onClick={e => {
             e.stopPropagation();
             onWishlistToggle(product);
           }}
@@ -51,9 +69,7 @@ const ProductCard = React.memo(({ product, wishlist, onWishlistToggle }) => {
         >
           <span
             className={`text-3xl cursor-pointer transition-transform duration-300 ${
-              isLiked
-                ? "text-pink-500 animate-pop"
-                : "text-gray-400 hover:text-pink-500 hover:scale-110"
+              isLiked ? "text-blue-400 animate-pop" : "text-gray-500 hover:text-blue-400 hover:scale-110"
             }`}
           >
             ♥
@@ -63,17 +79,15 @@ const ProductCard = React.memo(({ product, wishlist, onWishlistToggle }) => {
 
       <Link
         to={`/products/${product.id}`}
-        className="hover:text-indigo-600 transition-colors no-underline"
+        className="hover:text-blue-400 transition-colors no-underline"
         style={{ textDecoration: "none" }}
       >
-        <h3 className="text-lg font-extrabold text-white tracking-tight">{product.name}</h3>
+        <h3 className="text-lg font-semibold tracking-tight">{product.name}</h3>
       </Link>
-
-      <p className="text-indigo-400 font-bold mt-2 text-lg">₹ {product.price}</p>
+      <p className="text-blue-400 font-bold mt-2 text-lg">₹ {product.price}</p>
     </motion.div>
   );
 });
-
 
 function Home() {
   const { addToWishlist, removeFromWishlist, wishlist } = useWishlist();
@@ -84,11 +98,13 @@ function Home() {
   const queryParams = new URLSearchParams(window.location.search);
   const searchQuery = queryParams.get("search") || "";
   const navigate = useNavigate();
+   const videos = ["/banner1.mp4", "/banner2.mp4","/banner4.mp4"];
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     axios
       .get("http://localhost:5000/products")
-      .then((res) => {
+      .then(res => {
         const shuffled = res.data.sort(() => Math.random() - 0.5);
         setProducts(shuffled);
       })
@@ -96,22 +112,27 @@ function Home() {
       .finally(() => setLoading(false));
   }, []);
 
-  const handleWishlistToggle = (product) => {
+  const handleWishlistToggle = product => {
     if (!user) return navigate("/login");
-    wishlist.some((item) => item.id === product.id)
+    wishlist.some(item => item.id === product.id)
       ? removeFromWishlist(product.id)
       : addToWishlist(product);
   };
 
   const filteredProducts = useMemo(() => {
     return products.filter(
-      (p) =>
+      p =>
         (selectedType === "All" || p.type === selectedType) &&
-        [p.name, p.brand, p.type].some((field) =>
+        [p.name, p.brand, p.type].some(field =>
           field?.toLowerCase().includes(searchQuery.toLowerCase())
         )
     );
   }, [products, selectedType, searchQuery]);
+
+
+  const handleVideoEnd = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % videos.length);
+  };
 
   if (loading) {
     return (
@@ -121,54 +142,49 @@ function Home() {
     );
   }
 
-  const containerVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-  };
+  const containerVariants = { hidden: {}, visible: { transition: { staggerChildren: 0.1 } } };
+  const cardVariants = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } };
 
   return (
     <div className="min-h-screen font-sans bg-black text-white">
-      {/* Hero Banner */}
+      {/* Hero Video Banner */}
       {!searchQuery && (
-        <section className="w-full mb-12">
-          <Swiper
-            modules={[Autoplay, Pagination]}
-            autoplay={{ delay: 3000, disableOnInteraction: false }}
-            loop
-            pagination={{ clickable: true }}
-            className="w-full"
-          >
-            {["banner5.jpg", "banner3.jpg", "banner6.jpg"].map((img, idx) => (
-              <SwiperSlide key={idx}>
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 1 }}
-                  className="w-full aspect-[16/9]"
-                >
-                  <img
-                    src={`/${img}`}
-                    alt={`Banner ${idx + 1}`}
-                    className="w-full h-full object-contain object-center rounded-xl shadow-lg"
-                    loading="lazy"
-                  />
-                </motion.div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </section>
+    <section className="w-full relative mb-12 h-[90vh] rounded-xl overflow-hidden shadow-lg">
+  {/* Video */}
+  <video
+    key={videos[currentIndex]}
+    autoPlay
+    muted
+    playsInline
+    onEnded={handleVideoEnd}
+    className="w-full h-full object-cover"
+    src={videos[currentIndex]}
+    initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  exit={{ opacity: 0 }}
+  transition={{ duration: 1 }}
+  />
+
+  {/* Overlay */}
+  <div className="absolute inset-0 flex flex-col justify-end items-center z-10 px-4 pb-10">
+  <motion.div
+    animate={{ y: [0, -8, 0] }} // subtle floating motion
+    transition={{ duration: 2, repeat: Infinity, repeatType: "loop" }}
+  >
+ 
+
+  </motion.div>
+</div>
+<br></br>
+</section>
+
+
+
       )}
 
       <div className="max-w-7xl mx-auto px-6 py-12">
+        <br></br>
+    
         <motion.h2
           initial={{ y: 20, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
@@ -178,6 +194,7 @@ function Home() {
         >
           {searchQuery ? `Search Results for "${searchQuery}"` : "Browse Our Collection"}
         </motion.h2>
+        <br></br>
 
         {filteredProducts.length === 0 ? (
           <p className="text-center text-gray-400 text-lg mt-10">No products found.</p>
@@ -190,13 +207,14 @@ function Home() {
             viewport={{ once: true }}
           >
             {filteredProducts
-              .filter((p) => p.featured)
-              .map((product) => (
+              .filter(p => p.featured)
+              .map((product, idx) => (
                 <motion.div key={product.id} variants={cardVariants}>
                   <ProductCard
                     product={product}
                     wishlist={wishlist}
                     onWishlistToggle={handleWishlistToggle}
+                    delay={idx + 1}
                   />
                 </motion.div>
               ))}

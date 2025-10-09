@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
-import { useAuth } from '../context/AuthContext'; // ✅ import AuthContext
+import { useAuth } from '../context/AuthContext';
+import Particles from 'react-tsparticles';
+import { loadFull } from 'tsparticles';
+import { FaUser ,FaLock} from "react-icons/fa";
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const navigate = useNavigate();
-  const { login } = useAuth(); // ✅ get login function from context
+  const { login } = useAuth();
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -21,15 +21,18 @@ const Login = () => {
       );
 
       if (res.data.length > 0) {
-        const userData = res.data[0]; 
-        if(userData.role === "admin" ){
-          navigate("/admin")
-        }
-        else{
+        const userData = res.data[0];
 
-        login(userData); 
-        alert('Login Successful');
-        navigate('/home');
+        if(userData.status==="blocked"){
+
+          alert("Your account is blocked. Please contact the admin.");
+        return;
+      }
+        if (userData.role === 'admin') {
+          navigate('/admin');
+        } else {
+          login(userData);
+          navigate('/home');
         }
       } else {
         alert('Invalid email or password');
@@ -40,71 +43,64 @@ const Login = () => {
     }
   };
 
-  const handleSkip = () => {
-    navigate('/home');
-  };
+  const handleSkip = () => navigate('/home');
+
+  const particlesInit = async (main) => await loadFull(main);
 
   return (
-    <div className="container mt-5">
-      <div className="row justify-content-center">
-        <div className="col-md-6 col-lg-5">
-          <div className="card shadow rounded-3">
-            <div className="card-body p-4">
-              <h3 className="card-title text-center text-success mb-4">Login</h3>
-              <form onSubmit={handleLogin}>
-                <div className="mb-3">
-                  <label htmlFor="email" className="form-label">Email address</label>
-                  <input
-                    type="email"
-                    className="form-control border-success"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="Enter your email"
-                    required
-                  />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="password" className="form-label">Password</label>
-                  <input
-                    type="password"
-                    className="form-control border-success"
-                    id="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    placeholder="Enter your password"
-                    required
-                  />
-                </div>
-                <button type="submit" className="btn btn-success w-100 mb-2">
-                  Login
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-outline-success w-100"
-                  onClick={handleSkip}
-                >
-                  Skip for now
-                </button>
-              </form>
-              <p className="text-center mt-3 ">
-                Don't have an account?{' '}
-                <span
-                  className="text-success"
-                  style={{ cursor: 'pointer' }}
-                  onClick={() => navigate('/register')}
-                >
-                  Sign Up
-                </span>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+<div className="min-h-screen bg-black flex items-center justify-center">
+  <div className="relative z-10 w-full max-w-lg h-[550px] bg-gray-900/80 backdrop-blur-md shadow-2xl p-12 flex flex-col items-center justify-center">
+  <h2 className="text-4xl font-extrabold text-white mb-8 relative bottom-13">Login</h2>
+  
+  {/* Input Fields */}
+  <form className="w-full flex flex-col items-center" onSubmit={handleLogin}>
+ <FaUser className="relative left-30 top-10 transform -translate-y-1/2 text-gray-400" />
+<input
+  type="email"
+  placeholder="Email"
+  value={formData.email}
+  onChange={handleChange}
+  id="email"
+  name="email"
+  required
+  className="w-48 py-2 px-3 mb-6 bg-gray-800 text-white placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 rounded" style={{width: "300px"}}
+/>
+<FaLock className="relative left-30 top-10 transform -translate-y-1/2 text-gray-400" />
+<input
+  type="password"
+  placeholder="Password"
+   id="password"
+  name="password"
+  value={formData.password}
+  onChange={handleChange}
+  required
+  className="w-64 py-2 px-3 mb-6 bg-gray-800 text-white placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 rounded " style={{width: "300px"}}
+/>
+<br></br>
+  {/* Login Button */}
+  <button className="w-full py-3 hover:scale-105 transition-transform duration-300 shadow-lg" style={{width: "300px"}} type='submit'
+  >
+    Login
+  </button>
+
+  <button
+      onClick={() => navigate('/home')}
+      className="w-72 py-3 bg-gray-700 text-white rounded shadow-md hover:bg-gray-600 transition-colors duration-300 mt-2" style={{width: "300px"}}
+    >
+      Skip for now
+    </button>
+    <br></br>
+
+  {/* Optional Links */}
+  <p className="text-gray-400 text-sm mt-6">
+    Don't have an account? <span className="text-purple-500 cursor-pointer" onClick={() => navigate('/register')}>Sign Up</span>
+  </p>
+  </form>
+</div>
+
+
     </div>
-  );
+  ) 
 };
 
 export default Login;
