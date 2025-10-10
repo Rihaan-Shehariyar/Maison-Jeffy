@@ -33,12 +33,12 @@ export default function AdminCustomers() {
     setExpanded(expanded === id ? null : id);
   };
 
-  // Block / Unblock user
+  // Block  Unblock user
   const toggleBlockUser = async (user) => {
     try {
       const newStatus = user.status === "blocked" ? "active" : "blocked";
       await axios.patch(`http://localhost:5000/users/${user.id}`, { status: newStatus });
-      fetchCustomers(); // Refresh the table
+      fetchCustomers(); 
     } catch (err) {
       console.error("Error updating user status", err);
     }

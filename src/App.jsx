@@ -24,6 +24,9 @@ import AdminDashboard from './Admin/AdminDashboard';
 import AdminProducts from './Admin/AdminProducts';
 import AdminOrders from './Admin/AdminOrders';
 import AdminCustomers from './Admin/AdminCustomers';
+import { useState } from 'react';
+import axios from 'axios';
+import ProtectRouter from './Pages/ProtectRouter';
 
 
 function App() {
@@ -46,6 +49,10 @@ function App() {
 }
 
 function AppContent() {
+
+
+
+
   const location = useLocation();
   const hideNavbar = location.pathname === "/login" || location.pathname === "/register" ||
    location.pathname.startsWith("/admin");
@@ -60,21 +67,56 @@ function AppContent() {
         <Route path="/login" element={<Login />} />
         <Route path='/catalog' element={<Products />} />
         <Route path="/products/:id" element={<ViewProduct />} />
-        <Route path="/cart" element={<CartPage />} />
-        <Route path="/chekout" element={<ChekoutPage />} /> 
-        <Route path="/wishlist" element={<WishlistPage />} />
-        <Route path='/payment'element = {<Payment />} />
-        <Route path="/payment-failed" element={<PaymentFailed />} />
-        <Route path="/payment-success" element={<PaymentSuccess />} />
-        <Route path="/orders" element={<OrdersPage />} />
-        <Route path="/orders/:id" element={<OrderDetailsPage />} />
+        <Route path="/cart" element={
+          <ProtectRouter>
+          <CartPage />
+          </ProtectRouter>
+          } />
+        <Route path="/chekout" element={
+           <ProtectRouter>
+          <ChekoutPage />
+          </ProtectRouter>
+          } /> 
+        <Route path="/wishlist" element={
+          <ProtectRouter>
+          <WishlistPage />
+          </ProtectRouter>
+          } />
+        <Route path='/payment'element = {
+          <ProtectRouter>
+          <Payment />
+          </ProtectRouter>
+          } />
+        <Route path="/payment-failed" element={
+          <ProtectRouter>
+          <PaymentFailed />
+          </ProtectRouter>
+          } />
+        <Route path="/payment-success" element={
+          <ProtectRouter>
+          <PaymentSuccess />
+          </ProtectRouter>
+          } />
+        <Route path="/orders" element={
+          <ProtectRouter>
+          <OrdersPage />
+          </ProtectRouter>
+          } />
+        <Route path="/orders/:id" element={
+          <ProtectRouter>
+          <OrderDetailsPage />
+          </ProtectRouter>
+          } />
 
 
         {/* admin page */}
 
-         <Route path='/admin' element={<AdminLayout />} >
-         <Route index element = {<AdminDashboard />} />
-
+         <Route path='/admin' element={
+          <ProtectRouter requiredRole="admin">
+          <AdminLayout />
+          </ProtectRouter>}
+           >
+         <Route index element = {<AdminDashboard />} /> 
          <Route path='dashboard' element={<AdminDashboard />} />
          <Route path='admin-products' element={<AdminProducts />} />
          <Route path = 'admin-orders' element = {<AdminOrders />} />

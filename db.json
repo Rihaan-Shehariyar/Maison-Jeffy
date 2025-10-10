@@ -36,7 +36,7 @@
       "name": "neelaknadan",
       "email": "neelakandan@gmail.com",
       "password": "neelakandan@123",
-      "role": "user",
+      "role": "admin",
       "status": "active"
     },
     {
@@ -228,6 +228,14 @@
       "description": "Fresh sea breeze combined with soft floral undertones for a calming effect.",
       "type": "Fresh",
       "featured": true
+    },
+    {
+      "id": "e277",
+      "name": "perfume 1",
+      "price": "399",
+      "type": "floral",
+      "description": "perfume 1",
+      "image": "/products/floral2.jpg"
     }
   ],
   "orders": [
@@ -452,7 +460,7 @@
       "date": "2025-10-07T14:07:49.523Z"
     },
     {
-      "id": 1760000328952,
+      "id": "1760000328952",
       "userId": "1",
       "products": [
         {
@@ -488,7 +496,7 @@
       "date": "2025-10-09T08:58:48.952Z"
     },
     {
-      "id": 1760008588365,
+      "id": "1760008588365",
       "userId": "ceac",
       "products": [
         {

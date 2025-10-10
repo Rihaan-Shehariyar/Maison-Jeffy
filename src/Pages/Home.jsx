@@ -194,7 +194,8 @@ function Home() {
         >
           {searchQuery ? `Search Results for "${searchQuery}"` : "Browse Our Collection"}
         </motion.h2>
-        <br></br>
+        <br></br><br>
+        </br>
 
         {filteredProducts.length === 0 ? (
           <p className="text-center text-gray-400 text-lg mt-10">No products found.</p>

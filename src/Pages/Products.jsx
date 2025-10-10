@@ -168,11 +168,11 @@ export default function Products() {
                   : "text-gray-400 hover:text-blue-300"
               }`}
             >
-              {type}
+              {type} 
             </div>
           ))}
 
-          {/* Sliding underline */}
+          {/* Sliding underline */} 
           <span
             className="absolute bottom-0 h-1.5 bg-blue-400 rounded-full transition-all duration-300"
             style={{ left: underlineStyle.left, width: underlineStyle.width }}

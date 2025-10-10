@@ -68,6 +68,12 @@ function Navbar() {
 
         {/* Left Links */}
         <div className="hidden md:flex items-center gap-8 flex-1">
+
+       {/* <h1 className="text-3xl font-extrabold bg-gradient-to-r from-purple-400 via-pink-500 to-indigo-500 bg-clip-text text-transparent tracking-widest">
+  MJ
+</h1> */}
+
+
           {["Home", "Catalog"].map((item, idx) => (
             <Link
               key={idx}
@@ -81,15 +87,15 @@ function Navbar() {
         </div>
 
         {/* Center Logo */}
-        <div className="flex justify-center flex-1">
-          <Link to="/">
-            <img
-              src={logo}
-              alt="Logo"
-              className="h-16 sm:h-20 md:h-24 w-auto drop-shadow-md hover:scale-105 transition-transform"
-            />
-          </Link>
-        </div>
+          <div className="flex justify-center flex-1">
+            <Link to="/">
+              <img
+                src={logo}
+                alt="Logo"
+                className="h-16 sm:h-20 md:h-24 w-auto drop-shadow-md hover:scale-105 transition-transform"
+              />
+            </Link>
+          </div>
 
         {/* Right Icons + Search + Login */}
         <div className="flex items-center gap-4 flex-1 justify-end relative">

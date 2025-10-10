@@ -29,7 +29,7 @@ const Login = () => {
         return;
       }
         if (userData.role === 'admin') {
-          navigate('/admin');
+          navigate('/admin/role=admin');
         } else {
           login(userData);
           navigate('/home');
