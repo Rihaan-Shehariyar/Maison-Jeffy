@@ -1,10 +1,9 @@
-import axios from "axios";
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useWishlist } from "../context/WishlistContext";
 
-// ProductCard Component with Scroll Animation
+// Product Card Component
 const ProductCard = React.memo(({ product, isLiked, onWishlistToggle, delay = 0 }) => {
   const cardRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -37,12 +36,13 @@ const ProductCard = React.memo(({ product, isLiked, onWishlistToggle, delay = 0 
                   scroll-animate ${isVisible ? "show" : ""}`}
     >
       <div className="relative w-full h-64 mb-4 rounded-lg overflow-hidden">
-        <Link to={`/products/${product.id}`}>
+        <Link to={`/products/${product.id} `}  >
           <img
             src={product.image}
             alt={product.name}
             loading="lazy"
-            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 no-underline "
+            
           />
         </Link>
 
@@ -52,9 +52,7 @@ const ProductCard = React.memo(({ product, isLiked, onWishlistToggle, delay = 0 
         >
           <span
             className={`text-3xl cursor-pointer transition-transform duration-300 ${
-              isLiked
-                ? "text-blue-400"
-                : "text-gray-500 hover:text-blue-400 hover:scale-110"
+              isLiked ? "text-blue-400" : "text-gray-500 hover:text-blue-400 hover:scale-110"
             }`}
           >
             ♥
@@ -65,7 +63,7 @@ const ProductCard = React.memo(({ product, isLiked, onWishlistToggle, delay = 0 
       <Link
         to={`/products/${product.id}`}
         className="hover:text-blue-400 transition-colors no-underline"
-        style={{ textDecoration: "none" }}
+        style={{textDecoration:"none"}}
       >
         <h3 className="text-lg font-semibold tracking-tight">{product.name}</h3>
       </Link>
@@ -82,21 +80,30 @@ export default function Products() {
   const [loading, setLoading] = useState(true);
   const [selectedType, setSelectedType] = useState("All");
   const [sortOption, setSortOption] = useState("default");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
   const { user } = useAuth();
   const navigate = useNavigate();
   const { addToWishlist, removeFromWishlist, wishlist } = useWishlist();
   const queryParams = new URLSearchParams(window.location.search);
   const searchQuery = queryParams.get("search") || "";
 
+  // Fetch all products from JSON Server
+  const fetchProducts = async () => {
+    setLoading(true);
+    try {
+      const res = await fetch("http://localhost:5000/products");
+      const data = await res.json();
+      setProducts(data);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/products")
-      .then(res => {
-        const shuffled = res.data.sort(() => Math.random() - 0.5);
-        setProducts(shuffled);
-      })
-      .catch(console.error)
-      .finally(() => setLoading(false));
+    fetchProducts();
   }, []);
 
   useEffect(() => {
@@ -121,23 +128,31 @@ export default function Products() {
       : addToWishlist(product);
   };
 
+  // Filtered and sorted products
   const filteredProducts = useMemo(() => {
     let result = products.filter(
       p =>
-        (selectedType === "All" || p.type === selectedType) &&
+        (selectedType === "All" || p.type.toLowerCase() === selectedType.toLowerCase()) &&
         [p.name, p.brand, p.type].some(field =>
           field?.toLowerCase().includes(searchQuery.toLowerCase())
         )
     );
 
-    // Sorting
-    if (sortOption === "price-asc") result = result.sort((a, b) => a.price - b.price);
-    else if (sortOption === "price-desc") result = result.sort((a, b) => b.price - a.price);
-    else if (sortOption === "name-asc") result = result.sort((a, b) => a.name.localeCompare(b.name));
-    else if (sortOption === "name-desc") result = result.sort((a, b) => b.name.localeCompare(a.name));
+    if (sortOption === "price-asc") result.sort((a, b) => a.price - b.price);
+    else if (sortOption === "price-desc") result.sort((a, b) => b.price - a.price);
+    else if (sortOption === "name-asc") result.sort((a, b) => a.name.localeCompare(b.name));
+    else if (sortOption === "name-desc") result.sort((a, b) => b.name.localeCompare(a.name));
 
     return result;
   }, [products, selectedType, searchQuery, sortOption]);
+
+  // Paginated products
+  const paginatedProducts = useMemo(() => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    return filteredProducts.slice(startIndex, startIndex + itemsPerPage);
+  }, [filteredProducts, currentPage]);
+
+  const totalFilteredPages = Math.ceil(filteredProducts.length / itemsPerPage);
 
   if (loading) {
     return (
@@ -152,7 +167,6 @@ export default function Products() {
       <h2 className="text-4xl font-extrabold text-white mb-10 text-center tracking-tight">
         {searchQuery ? `Search Results for "${searchQuery}"` : "Browse Our Collection"}
       </h2>
-      <br></br>
 
       {/* Type Filter */}
       {!searchQuery && (
@@ -161,24 +175,29 @@ export default function Products() {
             <div
               key={type}
               data-type={type}
-              onClick={() => setSelectedType(type)}
+              onClick={() => {
+                setSelectedType(type);
+                setCurrentPage(1); // Reset page when filter changes
+              }}
               className={`cursor-pointer font-semibold transition-colors ${
                 selectedType === type
                   ? "text-blue-400"
                   : "text-gray-400 hover:text-blue-300"
               }`}
             >
-              {type} 
+              {type}
             </div>
+            
           ))}
 
-          {/* Sliding underline */} 
           <span
             className="absolute bottom-0 h-1.5 bg-blue-400 rounded-full transition-all duration-300"
             style={{ left: underlineStyle.left, width: underlineStyle.width }}
           ></span>
         </div>
+        
       )}
+
       <br></br>
 
       {/* Sort Options */}
@@ -195,24 +214,55 @@ export default function Products() {
           <option value="name-desc">Name: Z to A</option>
         </select>
       </div>
-      <br></br><br></br>
+      <br></br>
 
       {/* Products Grid */}
-      {filteredProducts.length === 0 ? (
+      {paginatedProducts.length === 0 ? (
         <p className="text-center text-gray-400 text-lg mt-10">No products found.</p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-          {filteredProducts.map((product, index) => (
+          {paginatedProducts.map((product, index) => (
             <ProductCard
               key={product.id}
               product={product}
               isLiked={isInWishlist(product.id)}
               onWishlistToggle={handleWishlistToggle}
-              delay={(index % 5) + 1} // stagger delay
+              delay={(index % 5) + 1}
             />
           ))}
         </div>
       )}
+
+      {/* Pagination */}
+      <div className="flex justify-center items-center gap-2 mt-6 flex-wrap">
+        <button
+          onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+          disabled={currentPage === 1}
+          className="px-3 py-1 rounded bg-gray-600 text-gray-200 disabled:opacity-50 hover:bg-gray-700"
+        >
+          Prev
+        </button>
+
+        {Array.from({ length: totalFilteredPages }, (_, i) => (
+          <button
+            key={i + 1}
+            onClick={() => setCurrentPage(i + 1)}
+            className={`px-3 py-1 rounded ${
+              currentPage === i + 1 ? "bg-cyan-500 text-white" : "bg-gray-600 text-gray-200 hover:bg-gray-700"
+            }`}
+          >
+            {i + 1}
+          </button>
+        ))}
+
+        <button
+          onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalFilteredPages))}
+          disabled={currentPage === totalFilteredPages}
+          className="px-3 py-1 rounded bg-gray-600 text-gray-200 disabled:opacity-50 hover:bg-gray-700"
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 }

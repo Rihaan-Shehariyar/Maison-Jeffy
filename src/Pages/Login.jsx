@@ -28,12 +28,10 @@ const Login = () => {
           alert("Your account is blocked. Please contact the admin.");
         return;
       }
-        if (userData.role === 'admin') {
-          navigate('/admin/role=admin');
-        } else {
-          login(userData);
-          navigate('/home');
-        }
+
+      login(userData);
+      
+      navigate(userData.role === 'admin' ? '/admin' : '/home');
       } else {
         alert('Invalid email or password');
       }

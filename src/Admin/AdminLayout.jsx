@@ -8,11 +8,13 @@ import {
   FaSignOutAlt,
   FaBars,
 } from "react-icons/fa";
+import { useAuth } from "../context/AuthContext";
 
 export default function AdminLayout() {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(true);
   const navigate = useNavigate();
+  const {logout} = useAuth()
 
   const menuItems = [
     { name: "Dashboard", path: "/admin/dashboard", icon: <FaTachometerAlt /> },
@@ -20,6 +22,13 @@ export default function AdminLayout() {
     { name: "Orders", path: "/admin/admin-orders", icon: <FaShoppingCart /> },
     { name: "Customers", path: "/admin/admin-customers", icon: <FaUsers /> },
   ];
+
+  const handleLogout = () => {
+     logout();               // clear auth state
+  navigate("/login");     // go to login page
+  window.location.reload()
+  };
+
 
   return (
     <div className="flex min-h-screen bg-gray-100">
@@ -61,7 +70,7 @@ export default function AdminLayout() {
 
         {/* Footer / Logout */}
         <div className="p-4 border-t border-gray-700">
-          <button className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-md bg-red-600 hover:bg-red-700 text-white font-medium" onClick={()=>navigate('/home')}>
+          <button className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-md bg-red-600 hover:bg-red-700 text-white font-medium" onClick={handleLogout}>
             <FaSignOutAlt /> {isOpen && "Logout"}
           </button>
         </div>

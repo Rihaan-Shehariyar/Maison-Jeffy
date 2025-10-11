@@ -5,6 +5,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  text-decoration: none;
 }
 
 body {
@@ -129,3 +130,4 @@ input:focus, textarea:focus, select:focus {
 .scroll-animate[data-delay="5"] {
   animation-delay: 0.5s;
 }
+

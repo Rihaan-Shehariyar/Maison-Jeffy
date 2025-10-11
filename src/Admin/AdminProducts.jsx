@@ -1,7 +1,6 @@
-
 import axios from "axios";
 import { useEffect, useState } from "react";
-import DoughnutChart from "./DoughnutChart";
+import Modal from "./Modal";
 
 export default function AdminProducts() {
   const [products, setProducts] = useState([]);
@@ -109,8 +108,9 @@ export default function AdminProducts() {
         </div>
 
         {/* Add Product Form */}
-        {adding && (
-          <div className="bg-[#334155] p-4 rounded-lg mb-6 shadow-inner flex flex-col gap-3">
+
+
+        <Modal isOpen={adding} onClose={()=> setAdding(false)}>
             {["name", "price", "type", "image"].map((field) => (
               <input
                 key={field}
@@ -120,9 +120,10 @@ export default function AdminProducts() {
                 onChange={(e) =>
                   setNewProduct({ ...newProduct, [field]: e.target.value })
                 }
-                className="bg-[#1e293b] border border-[#475569] text-white p-2 rounded focus:ring-2 focus:ring-cyan-500"
-              />
+                className="flex flex-col gap-3"
+              /> 
             ))}
+  
             <textarea
               placeholder="Description"
               value={newProduct.description}
@@ -145,8 +146,7 @@ export default function AdminProducts() {
                 Cancel
               </button>
             </div>
-          </div>
-        )}
+            </Modal>
         <br></br>
 
         {/* Product Cards */}

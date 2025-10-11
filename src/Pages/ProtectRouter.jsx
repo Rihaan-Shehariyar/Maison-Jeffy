@@ -4,7 +4,7 @@ import { useAuth } from "../context/AuthContext";
 
 export default function ProtectRouter({children,requiredRole}){
 
-    const {user} = useAuth;
+    const {user} = useAuth();
 
 
     if(!user){

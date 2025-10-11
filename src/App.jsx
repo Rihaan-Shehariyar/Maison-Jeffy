@@ -24,8 +24,6 @@ import AdminDashboard from './Admin/AdminDashboard';
 import AdminProducts from './Admin/AdminProducts';
 import AdminOrders from './Admin/AdminOrders';
 import AdminCustomers from './Admin/AdminCustomers';
-import { useState } from 'react';
-import axios from 'axios';
 import ProtectRouter from './Pages/ProtectRouter';
 
 
