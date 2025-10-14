@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 import { FaUser, FaLock, FaEnvelope, FaMailchimp, FaFacebookMessenger } from 'react-icons/fa';
 
 const Registration = () => {
@@ -21,15 +22,15 @@ const Registration = () => {
     try {
       const res = await axios.get(`http://localhost:5000/users?email=${formData.email}`);
       if (res.data.length > 0) {
-        alert("User already exists");
+        toast.info("User already exists");
         return;
       }
       await axios.post("http://localhost:5000/users", formData);
-      alert("SignUp Successful");
+      toast.success("SignUp Successful");
       navigate("/login");
     } catch (err) {
       console.error(err);
-      alert("Error while registering");
+      toast.error("Error while registering");
     }
   };
 

@@ -2,6 +2,7 @@ import { createContext, useState, useContext, useEffect } from "react";
 import { useAuth } from "./AuthContext";
 import { useCart } from "./CartContext";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const OrderContext = createContext();
 
@@ -28,12 +29,12 @@ export const OrderProvider = ({ children }) => {
   // Place Order
   const placeOrder = async (shipping, paymentMethod, navigate) => {
     if (!user) {
-      alert("Please login to place an order");
+      toast.info("Please login to place an order");
       return;
     }
 
     if (cart.length === 0) {
-      alert("Your cart is empty");
+      toast.info("Your cart is empty");
       return;
     }
 
@@ -52,7 +53,7 @@ export const OrderProvider = ({ children }) => {
       await axios.post(`${API_URL}/orders`, newOrder);
       setOrders([...orders, newOrder]);
       clearCart();
-      alert("Order placed successfully!");
+      toast.done("Order placed successfully!");
       navigate("/orders");
     } catch (error) {
       console.error("Error placing order:", error);

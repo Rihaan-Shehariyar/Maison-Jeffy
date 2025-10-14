@@ -5,6 +5,7 @@ import { useAuth } from '../context/AuthContext';
 import Particles from 'react-tsparticles';
 import { loadFull } from 'tsparticles';
 import { FaUser ,FaLock} from "react-icons/fa";
+import { toast } from 'react-toastify';
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
@@ -25,19 +26,19 @@ const Login = () => {
 
         if(userData.status==="blocked"){
 
-          alert("Your account is blocked. Please contact the admin.");
+          toast.info("Your account is blocked. Please contact the admin.");
         return;
       }
 
       login(userData);
       
-      navigate(userData.role === 'admin' ? '/admin' : '/home');
+      navigate(userData.role === 'admin' ? '/admin' :toast.success("Login Successfull"), '/cart');
       } else {
-        alert('Invalid email or password');
+        toast.error('Invalid email or password');
       }
     } catch (err) {
       console.log(err);
-      alert('Error while logging in');
+      toast.error('Error while logging in');
     }
   };
 

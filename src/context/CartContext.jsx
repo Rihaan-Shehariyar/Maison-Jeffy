@@ -1,5 +1,6 @@
 import { createContext, useState, useContext } from "react";
 import { useAuth } from "./AuthContext";
+import { toast } from "react-toastify";
 
 export const CartContext = createContext();
 
@@ -10,12 +11,12 @@ export const CartProvider = ({ children }) => {
   // Add to cart
   const addToCart = (product) => {
     if (!user) {
-      alert("Please login to add products to cart");
+      toast.info("Please login to add products to cart");
       return;
     }
 
     const exist = cart.find((item) => item.id === product.id);
-    alert(`${product.name} added`);
+    toast.success(`${product.name} added`);
 
     if (exist) {
       setCart(

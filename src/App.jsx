@@ -25,6 +25,7 @@ import AdminProducts from './Admin/AdminProducts';
 import AdminOrders from './Admin/AdminOrders';
 import AdminCustomers from './Admin/AdminCustomers';
 import ProtectRouter from './Pages/ProtectRouter';
+import { ToastContainer } from 'react-toastify';
 
 
 function App() {
@@ -59,6 +60,8 @@ function AppContent() {
     <>
       {!hideNavbar && <Navbar />}
       <Routes>
+
+
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/register" element={<Registration />} />
@@ -126,6 +129,9 @@ function AppContent() {
         </Route> 
 
       </Routes>
+
+      <ToastContainer  position="top-right" autoClose={3000} theme="colored"/>
+
     </>
   );
 }

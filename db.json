@@ -46,6 +46,13 @@
       "password": "Rashad@123",
       "role": "user",
       "status": "active"
+    },
+    {
+      "id": "d93b",
+      "name": "Ihsan",
+      "email": "ihsan@gmail.com",
+      "password": "Ihsan@123",
+      "role": "user"
     }
   ],
   "products": [
