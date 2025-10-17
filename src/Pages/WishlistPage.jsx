@@ -19,7 +19,7 @@ export default function WishlistPage() {
                 key={item.id}
                 className="flex flex-col items-center bg-white p-4 rounded-lg shadow"
               >
-                <Link to={`/products/${item.id}`} className="block w-full h-48 mb-2 overflow-hidden rounded">
+                <Link to={`/products/${item.productId}`} className="block w-full h-48 mb-2 overflow-hidden rounded">
                   <img
                     src={item.image}
                     alt={item.name}

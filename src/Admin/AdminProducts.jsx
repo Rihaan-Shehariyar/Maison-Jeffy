@@ -31,6 +31,7 @@ export default function AdminProducts() {
   };
 
   const handleAddProduct = async () => {
+    
     try {
       await axios.post("http://localhost:5000/products", newProduct);
       setAdding(false);
@@ -120,7 +121,7 @@ export default function AdminProducts() {
                 onChange={(e) =>
                   setNewProduct({ ...newProduct, [field]: e.target.value })
                 }
-                className="flex flex-col gap-3"
+                className="flex flex-col gap-3" 
               /> 
             ))}
   
@@ -136,6 +137,9 @@ export default function AdminProducts() {
               <button
                 onClick={handleAddProduct}
                 className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
+                 disabled={
+                         !newProduct.name || !newProduct.price || !newProduct.type || !newProduct.image || !newProduct.description
+                        }
               >
                 Add
               </button>

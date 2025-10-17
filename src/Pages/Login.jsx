@@ -31,8 +31,9 @@ const Login = () => {
       }
 
       login(userData);
+      toast.success("Login Successfull")
       
-      navigate(userData.role === 'admin' ? '/admin' :toast.success("Login Successfull"), '/cart');
+      navigate(userData.role === 'admin' ? '/admin' : '/home');
       } else {
         toast.error('Invalid email or password');
       }
@@ -42,7 +43,7 @@ const Login = () => {
     }
   };
 
-  const handleSkip = () => navigate('/home');
+  const handleSkip = () => navigate('/');
 
   const particlesInit = async (main) => await loadFull(main);
 

@@ -6,6 +6,7 @@
   import { useWishlist } from "../context/WishlistContext"; 
   import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
   import { faCartShopping, faCreditCard } from "@fortawesome/free-solid-svg-icons";
+import { toast } from "react-toastify";
 
   export default function ViewProduct() {
     const { id } = useParams();
@@ -135,7 +136,7 @@ const isInCart = product && cart.find((item) => item.id === product.id);
   <button
     onClick={() => {
       if (!user) {
-        alert("Please login to continue");
+        toast.info("Please login to continue");
         return;
       }
       // ✅ Go directly to Checkout with this product

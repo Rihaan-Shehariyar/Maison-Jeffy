@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import { toast } from "react-toastify";
 
 
 export default function CheckoutPage() {
@@ -29,10 +30,10 @@ export default function CheckoutPage() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
  const handlePlaceOrder = async () => {
-  if (!user) return alert("Please login to place order");
+  if (!user) return toast.info("Please login to place order");
 
   if (!formData.name || !formData.address || !formData.phone)
-    return alert("Fill all fields");
+    return toast.info("Fill all fields");
 
   // Save order temporarily before payment
   const total = productsToCheckout.reduce((sum, item) => sum + item.price * item.qty, 0);
@@ -48,7 +49,7 @@ export default function CheckoutPage() {
     date: new Date().toISOString(),
   };
 
-  // Save order in localStorage (simulate backend order pending)
+ 
   localStorage.setItem("pendingOrder", JSON.stringify(newOrder));
 
   if (formData.paymentMethod === "cod") {
@@ -56,14 +57,14 @@ export default function CheckoutPage() {
     try {
       await axios.post("http://localhost:5000/orders", newOrder);
       clearCart();
-      alert("Order placed successfully!");
+      toast.success("Order placed successfully!");
       navigate("/orders");
     } catch (err) {
       console.error(err);
-      alert("Something went wrong");
+      toast.error("Something went wrong");
     }
   } else {
-    // Redirect to fake payment page for UPI or Card
+    
     navigate("/payment");
   }
 };
@@ -107,7 +108,8 @@ export default function CheckoutPage() {
           onChange={handleChange}
         />
         <input
-          type="text"
+          type="number"
+          pattern="\d{10}"  
           name="phone"
           placeholder="Phone Number"
           className="w-full p-3 border rounded focus:ring-2 focus:ring-indigo-400 outline-none font-sans"

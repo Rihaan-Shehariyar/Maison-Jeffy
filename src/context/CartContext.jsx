@@ -1,4 +1,5 @@
-import { createContext, useState, useContext } from "react";
+import { createContext, useState, useContext, useEffect } from "react";
+import axios from "axios";
 import { useAuth } from "./AuthContext";
 import { toast } from "react-toastify";
 
@@ -7,45 +8,69 @@ export const CartContext = createContext();
 export const CartProvider = ({ children }) => {
   const { user } = useAuth();
   const [cart, setCart] = useState([]);
+  const API = "http://localhost:5000/cart"; // 🔹 your JSON server endpoint
 
-  // Add to cart
-  const addToCart = (product) => {
+  // ✅ Fetch user cart from JSON Server when logged in
+  useEffect(() => {
+    if (user) {
+      axios
+        .get(`${API}?userId=${user.id}`)
+        .then((res) => setCart(res.data))
+        .catch((err) => console.error("Error loading cart:", err));
+    } else {
+      setCart([]); // clear cart when user logs out
+    }
+  }, [user]);
+
+  // ✅ Add to cart
+  const addToCart = async (product) => {
     if (!user) {
       toast.info("Please login to add products to cart");
       return;
     }
 
-    const exist = cart.find((item) => item.id === product.id);
-    toast.success(`${product.name} added`);
+    const existing = cart.find((item) => item.productId === product.id);
 
-    if (exist) {
-      setCart(
-        cart.map((item) =>
-          item.id === product.id ? { ...item, qty: item.qty + 1 } : item
-        )
-      );
+    if (existing) {
+      const updatedItem = { ...existing, qty: existing.qty + 1 };
+      await axios.put(`${API}/${existing.id}`, updatedItem);
+      setCart(cart.map((i) => (i.id === existing.id ? updatedItem : i)));
     } else {
-      setCart([...cart, { ...product, qty: 1 }]);
+      const newItem = { userId: user.id, productId: product.id, ...product, qty: 1 };
+      const res = await axios.post(API, newItem);
+      setCart([...cart, res.data]);
     }
+
+    toast.success(`${product.name} added to cart`);
   };
 
-  // Remove product
-  const removeFromCart = (id) => {
+  // ✅ Remove from cart
+  const removeFromCart = async (id) => {
+    await axios.delete(`${API}/${id}`);
     setCart(cart.filter((item) => item.id !== id));
   };
 
-  // Clear cart
-  const clearCart = () => setCart([]);
-
   // ✅ Update quantity
-  const updateQty = (id, newQty) => {
-    setCart((prevCart) =>
-      newQty <= 0
-        ? prevCart.filter((item) => item.id !== id) // auto-remove if qty is 0
-        : prevCart.map((item) =>
-            item.id === id ? { ...item, qty: newQty } : item
-          )
-    );
+  const updateQty = async (id, newQty) => {
+    const item = cart.find((i) => i.id === id);
+    if (!item) return;
+
+    if (newQty <= 0) {
+      await removeFromCart(id);
+      return;
+    }
+
+    const updatedItem = { ...item, qty: newQty };
+    await axios.put(`${API}/${id}`, updatedItem);
+    setCart(cart.map((i) => (i.id === id ? updatedItem : i)));
+  };
+
+  // ✅ Clear cart (for that user)
+  const clearCart = async () => {
+    for (const item of cart) {
+      await axios.delete(`${API}/${item.id}`);
+    }
+    setCart([]);
   };
 
   return (

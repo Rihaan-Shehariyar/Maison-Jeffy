@@ -122,7 +122,7 @@ export default function AdminOrders(){
                       ) : (
                         <ChevronDown size={18} />
                       )}
-                      {order.shipping.name}
+                      {order.shipping?.name}
                     </td>
                     <td className="p-3">{order.customerName}</td>
                     <td className="p-3 text-cyan-400 font-semibold">₹{order.total}</td>

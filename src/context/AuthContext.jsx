@@ -13,7 +13,9 @@ export const AuthProvider = ({ children }) => {
     
     setUser(userData);
     
+    if(userData.role !== "admin"){
     localStorage.setItem("user", JSON.stringify(userData)); // persist login
+  }
   };
 
   const logout = () => {

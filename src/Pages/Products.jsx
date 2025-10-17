@@ -33,7 +33,7 @@ const ProductCard = React.memo(({ product, isLiked, onWishlistToggle, delay = 0 
                   rounded-xl shadow-md p-4 bg-gradient-to-b from-gray-900 to-black 
                   text-white transition-all duration-500 
                   hover:shadow-[0_0_25px_#1e3a8a] hover:scale-105 
-                  scroll-animate ${isVisible ? "show" : ""}`}
+                 `}
     >
       <div className="relative w-full h-64 mb-4 rounded-lg overflow-hidden">
         <Link to={`/products/${product.id} `}  >
@@ -104,6 +104,8 @@ export default function Products() {
 
   useEffect(() => {
     fetchProducts();
+    const savedType = localStorage.getItem("selectedType");
+  if (savedType) setSelectedType(savedType);
   }, []);
 
   useEffect(() => {
@@ -146,7 +148,7 @@ export default function Products() {
     return result;
   }, [products, selectedType, searchQuery, sortOption]);
 
-  // Paginated products
+  // Pagination
   const paginatedProducts = useMemo(() => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     return filteredProducts.slice(startIndex, startIndex + itemsPerPage);
@@ -177,6 +179,7 @@ export default function Products() {
               data-type={type}
               onClick={() => {
                 setSelectedType(type);
+                localStorage.setItem("selectedType",type)
                 setCurrentPage(1); // Reset page when filter changes
               }}
               className={`cursor-pointer font-semibold transition-colors ${
@@ -194,9 +197,33 @@ export default function Products() {
             className="absolute bottom-0 h-1.5 bg-blue-400 rounded-full transition-all duration-300"
             style={{ left: underlineStyle.left, width: underlineStyle.width }}
           ></span>
+          <br />
         </div>
         
+        
       )}
+
+         {/* Pagination */}
+        <div className="flex justify-end items-center gap-2 mt-6 flex-wrap h-auto">
+    
+          <button
+            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+            disabled={currentPage === 1}
+            className="px-3 py-1 rounded bg-gray-600 text-gray-200 disabled:opacity-50 hover:bg-gray-700"
+          >
+            Prev
+          </button>
+
+
+
+          <button
+            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalFilteredPages))}
+            disabled={currentPage === totalFilteredPages}
+            className="px-3 py-1 rounded bg-gray-600 text-gray-200 disabled:opacity-50 hover:bg-gray-700"
+          >
+            Next
+          </button>
+        </div>
 
       <br></br>
 
@@ -230,39 +257,14 @@ export default function Products() {
               delay={(index % 5) + 1}
             />
           ))}
+  
         </div>
+       
       )}
 
-      {/* Pagination */}
-      <div className="flex justify-center items-center gap-2 mt-6 flex-wrap">
-        <button
-          onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-          disabled={currentPage === 1}
-          className="px-3 py-1 rounded bg-gray-600 text-gray-200 disabled:opacity-50 hover:bg-gray-700"
-        >
-          Prev
-        </button>
 
-        {Array.from({ length: totalFilteredPages }, (_, i) => (
-          <button
-            key={i + 1}
-            onClick={() => setCurrentPage(i + 1)}
-            className={`px-3 py-1 rounded ${
-              currentPage === i + 1 ? "bg-cyan-500 text-white" : "bg-gray-600 text-gray-200 hover:bg-gray-700"
-            }`}
-          >
-            {i + 1}
-          </button>
-        ))}
 
-        <button
-          onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalFilteredPages))}
-          disabled={currentPage === totalFilteredPages}
-          className="px-3 py-1 rounded bg-gray-600 text-gray-200 disabled:opacity-50 hover:bg-gray-700"
-        >
-          Next
-        </button>
-      </div>
+     
     </div>
   );
 }

@@ -21,6 +21,9 @@ function Navbar() {
 
   // Fetch products from JSON server
   useEffect(() => {
+
+     const savedSearch = localStorage.getItem("search")
+     if(savedSearch) setSearch(savedSearch)
     axios.get("http://localhost:5000/products")
       .then(res => setProducts(res.data))
       .catch(console.error);
@@ -41,6 +44,7 @@ function Navbar() {
   const handleSearchChange = (e) => {
     const query = e.target.value;
     setSearch(query);
+    localStorage.setItem("search", query);
 
     if (query.trim()) {
       const filtered = products.filter(p =>
@@ -124,6 +128,7 @@ function Navbar() {
                     key={item.id}
                     className="flex items-center gap-3 px-4 py-2 cursor-pointer hover:bg-#333333 transition"
                     onClick={() => {
+                      localStorage.setItem("search",searchQuery)
                       navigate(`/products/${item.id}`);
                       setSearch("");
                       setShowSuggestions(false);

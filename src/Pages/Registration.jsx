@@ -34,7 +34,7 @@ const Registration = () => {
     }
   };
 
-  const handleSkip = () => navigate('/home');
+  const handleSkip = () => navigate('/');
 
    return (
   <div className="min-h-screen bg-black flex items-center justify-center">

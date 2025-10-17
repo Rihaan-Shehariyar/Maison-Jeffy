@@ -63,13 +63,15 @@ function AppContent() {
 
 
         <Route path="/" element={<Home />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/home" element={
+          <Home />
+          } />
         <Route path="/register" element={<Registration />} />
         <Route path="/login" element={<Login />} />
         <Route path='/catalog' element={<Products />} />
         <Route path="/products/:id" element={<ViewProduct />} />
         <Route path="/cart" element={
-          <ProtectRouter>
+          <ProtectRouter requiredRole="user">
           <CartPage />
           </ProtectRouter>
           } />

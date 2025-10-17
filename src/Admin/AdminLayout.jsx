@@ -24,8 +24,8 @@ export default function AdminLayout() {
   ];
 
   const handleLogout = () => {
-     logout();               // clear auth state
-  navigate("/login");     // go to login page
+     logout();              
+  navigate("/login");     
   window.location.reload()
   };
 

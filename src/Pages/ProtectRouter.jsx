@@ -13,7 +13,14 @@ export default function ProtectRouter({children,requiredRole}){
 
 
     if(requiredRole && user.role !== requiredRole){
-        return  <Navigate to="/" replace />
+
+
+    if (user.role === "admin") {
+      return <Navigate to="/admin" replace />;
+    } 
+    else {
+      return <Navigate to="/home" replace />;
+    }
     
     }
 

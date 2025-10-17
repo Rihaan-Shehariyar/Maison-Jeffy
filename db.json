@@ -6,7 +6,7 @@
       "email": "rihaanshehariyar@gmail.com",
       "password": "Rihaan@2",
       "role": "user",
-      "status": "active"
+      "status": "blocked"
     },
     {
       "id": "2",
@@ -52,6 +52,48 @@
       "name": "Ihsan",
       "email": "ihsan@gmail.com",
       "password": "Ihsan@123",
+      "role": "user"
+    },
+    {
+      "id": "a565",
+      "name": "swalih",
+      "email": "swalih@gmail.com123",
+      "password": "swalih123",
+      "role": "user"
+    },
+    {
+      "id": "870e",
+      "name": "shaji",
+      "email": "shaji@gmail.com",
+      "password": "shaji@123",
+      "role": "user"
+    },
+    {
+      "id": "ed21",
+      "name": "soaman",
+      "email": "soman@gmail.com",
+      "password": "soma123",
+      "role": "user"
+    },
+    {
+      "id": "bca7",
+      "name": "beerankkutty",
+      "email": "beerankkutty@gmail.com",
+      "password": "beeran",
+      "role": "user"
+    },
+    {
+      "id": "5d0c",
+      "name": "pottan",
+      "email": "pottan@gmail.com",
+      "password": "pottan",
+      "role": "user"
+    },
+    {
+      "id": "09a7",
+      "name": "mandan",
+      "email": "mandan@gmail.com",
+      "password": "mandan123",
       "role": "user"
     }
   ],
@@ -245,6 +287,138 @@
       "image": "/products/floral2.jpg"
     }
   ],
+  "cart": [
+    {
+      "id": "17",
+      "userId": "1",
+      "productId": "17",
+      "name": "Saffron Silk",
+      "price": 1500,
+      "image": "/products/oriental2.jpg",
+      "description": "Exotic saffron blended with soft floral notes for a luxurious scent.",
+      "type": "Oriental",
+      "featured": true,
+      "qty": 1
+    },
+    {
+      "id": "17",
+      "userId": "1",
+      "productId": "17",
+      "name": "Saffron Silk",
+      "price": 1500,
+      "image": "/products/oriental2.jpg",
+      "description": "Exotic saffron blended with soft floral notes for a luxurious scent.",
+      "type": "Oriental",
+      "featured": true,
+      "qty": 1
+    },
+    {
+      "id": "4",
+      "userId": "3",
+      "productId": "4",
+      "name": "Violet Mist",
+      "price": 2000,
+      "image": "/products/floral4.jpg",
+      "description": "Fresh violet fragrance with green accords, bringing a light and airy sensation.",
+      "type": "Floral",
+      "featured": true,
+      "qty": 1
+    },
+    {
+      "id": "2",
+      "userId": "5d0c",
+      "productId": "2",
+      "name": "Rose Enchanté",
+      "price": 1500,
+      "image": "/products/floral2.jpg",
+      "description": "Romantic rose aroma blended with subtle hints of vanilla and musk for a timeless scent.",
+      "type": "Floral",
+      "featured": true,
+      "qty": 1
+    }
+  ],
+  "wishlist": [
+    {
+      "id": "287f",
+      "userId": "1",
+      "productId": "17",
+      "name": "Saffron Silk",
+      "image": "/products/oriental2.jpg",
+      "price": 1500
+    },
+    {
+      "id": "c843",
+      "userId": "1",
+      "productId": "9",
+      "name": "Peach Serenade",
+      "image": "/products/fruity4.jpg",
+      "price": 2000
+    },
+    {
+      "id": "b536",
+      "userId": "1",
+      "productId": "4",
+      "name": "Violet Mist",
+      "image": "/products/floral4.jpg",
+      "price": 2000
+    },
+    {
+      "id": "81be",
+      "userId": "1",
+      "productId": "14",
+      "name": "Forest Veil",
+      "image": "/products/woody4.jpg",
+      "price": 2000
+    },
+    {
+      "id": "ad31",
+      "userId": "1",
+      "productId": "12",
+      "name": "Sandalwood Whisper",
+      "image": "/products/woody2.jpg",
+      "price": 1500
+    },
+    {
+      "id": "6699",
+      "userId": "1",
+      "productId": "2",
+      "name": "Rose Enchanté",
+      "image": "/products/floral2.jpg",
+      "price": 1500
+    },
+    {
+      "id": "e641",
+      "userId": "d93b",
+      "productId": "23",
+      "name": "Aqua Essence",
+      "image": "/products/fresh3.jpg",
+      "price": 999
+    },
+    {
+      "id": "794a",
+      "userId": "d93b",
+      "productId": "9",
+      "name": "Peach Serenade",
+      "image": "/products/fruity4.jpg",
+      "price": 2000
+    },
+    {
+      "id": "81a1",
+      "userId": "3",
+      "productId": "24",
+      "name": "Sea Whisper",
+      "image": "/products/fresh4.jpg",
+      "price": 2000
+    },
+    {
+      "id": "b9c8",
+      "userId": "3",
+      "productId": "4",
+      "name": "Violet Mist",
+      "image": "/products/floral4.jpg",
+      "price": 2000
+    }
+  ],
   "orders": [
     {
       "id": "1759389579857",
@@ -268,7 +442,7 @@
         "phone": "8921996927",
         "paymentMethod": "cod"
       },
-      "status": "Shipped"
+      "status": "Delivered"
     },
     {
       "id": "1759390116024",
@@ -292,7 +466,7 @@
         "phone": "8921996927",
         "paymentMethod": "cod"
       },
-      "status": "Pending"
+      "status": "Shipped"
     },
     {
       "id": "1759466751557",
@@ -316,7 +490,7 @@
         "phone": "8921996927",
         "paymentMethod": "upi"
       },
-      "status": "Pending"
+      "status": "Shipped"
     },
     {
       "id": "1759500000000",
@@ -365,30 +539,6 @@
         "paymentMethod": "card"
       },
       "status": "Processing"
-    },
-    {
-      "id": "1759502222222",
-      "userId": null,
-      "products": [
-        {
-          "id": "12",
-          "name": "Sandalwood Whisper",
-          "price": 1500,
-          "image": "/products/woody2.jpg",
-          "description": "Soft sandalwood aroma blended with subtle spices for a rich, calming scent.",
-          "type": "Woody",
-          "qty": 1
-        }
-      ],
-      "total": 1500,
-      "date": "2025-10-06T09:00:00.000Z",
-      "shipping": {
-        "name": "Ava Smith",
-        "address": "Mumbai, Maharashtra",
-        "phone": "9988776655",
-        "paymentMethod": "upi"
-      },
-      "status": "Pending"
     },
     {
       "id": "1759503333333",
@@ -462,7 +612,7 @@
         "phone": "123456789",
         "paymentMethod": "upi"
       },
-      "status": "Pending",
+      "status": "Delivered",
       "paymentMethod": "upi",
       "date": "2025-10-07T14:07:49.523Z"
     },
@@ -524,9 +674,185 @@
         "phone": "12345679",
         "paymentMethod": "cod"
       },
-      "status": "Pending",
+      "status": "Shipped",
       "paymentMethod": "cod",
       "date": "2025-10-09T11:16:28.365Z"
+    },
+    {
+      "id": "1760591989964",
+      "userId": "1",
+      "products": [
+        {
+          "id": "14",
+          "userId": "1",
+          "productId": "14",
+          "name": "Forest Veil",
+          "price": 2000,
+          "image": "/products/woody4.jpg",
+          "description": "Green forest notes with earthy undertones, evoking nature's serenity.",
+          "type": "Woody",
+          "featured": true,
+          "qty": 1
+        },
+        {
+          "id": "7",
+          "userId": "1",
+          "productId": "7",
+          "name": "Berry Essence",
+          "price": 1500,
+          "image": "/products/fruity2.jpg",
+          "description": "Sweet berries blended with soft floral notes, a playful and youthful scent.",
+          "type": "Fruity",
+          "featured": true,
+          "qty": 1
+        }
+      ],
+      "total": 3500,
+      "shipping": {
+        "name": "Rihaan Shehariyar",
+        "address": "Thikkodi Panchayath calicut kerala\nLove Dale HO",
+        "phone": "08921996927",
+        "paymentMethod": "cod"
+      },
+      "status": "Delivered",
+      "paymentMethod": "cod",
+      "date": "2025-10-16T05:19:49.964Z"
+    },
+    {
+      "id": "1760593996547",
+      "userId": "d93b",
+      "products": [
+        {
+          "id": "23",
+          "userId": "d93b",
+          "productId": "23",
+          "name": "Aqua Essence",
+          "price": 999,
+          "image": "/products/fresh3.jpg",
+          "description": "Pure aquatic notes with subtle floral hints, evoking serenity.",
+          "type": "Fresh",
+          "featured": true,
+          "qty": 1
+        }
+      ],
+      "total": 999,
+      "shipping": {
+        "name": "ihsn",
+        "address": "Thikkodi Panchayath calicut kerala\nLove Dale HO",
+        "phone": "8921996927",
+        "paymentMethod": "cod"
+      },
+      "status": "Pending",
+      "paymentMethod": "cod",
+      "date": "2025-10-16T05:53:16.547Z"
+    },
+    {
+      "id": "1760605600767",
+      "userId": "a565",
+      "products": [
+        {
+          "id": "2",
+          "userId": "a565",
+          "productId": "2",
+          "name": "Rose Enchanté",
+          "price": 1500,
+          "image": "/products/floral2.jpg",
+          "description": "Romantic rose aroma blended with subtle hints of vanilla and musk for a timeless scent.",
+          "type": "Floral",
+          "featured": true,
+          "qty": 1
+        },
+        {
+          "id": "19",
+          "userId": "a565",
+          "productId": "19",
+          "name": "Vanilla Dusk",
+          "price": 2000,
+          "image": "/products/oriental4.jpg",
+          "description": "Soft vanilla with warm undertones, a comforting and sensual scent.",
+          "type": "Oriental",
+          "featured": true,
+          "qty": 1
+        },
+        {
+          "id": "7",
+          "userId": "a565",
+          "productId": "7",
+          "name": "Berry Essence",
+          "price": 1500,
+          "image": "/products/fruity2.jpg",
+          "description": "Sweet berries blended with soft floral notes, a playful and youthful scent.",
+          "type": "Fruity",
+          "featured": true,
+          "qty": 1
+        }
+      ],
+      "total": 5000,
+      "shipping": {
+        "name": "asdsadfcsdg",
+        "address": "segsdrthtsre",
+        "phone": "1233421532464574354r21543576534642452363266",
+        "paymentMethod": "cod"
+      },
+      "status": "Pending",
+      "paymentMethod": "cod",
+      "date": "2025-10-16T09:06:40.767Z"
+    },
+    {
+      "id": "1760605633528",
+      "userId": "a565",
+      "products": [
+        {
+          "id": "2",
+          "userId": "a565",
+          "productId": "2",
+          "name": "Rose Enchanté",
+          "price": 1500,
+          "image": "/products/floral2.jpg",
+          "description": "Romantic rose aroma blended with subtle hints of vanilla and musk for a timeless scent.",
+          "type": "Floral",
+          "featured": true,
+          "qty": 1
+        }
+      ],
+      "total": 1500,
+      "shipping": {
+        "name": "asad",
+        "address": "sadffg",
+        "phone": "zsdfgtrshgb",
+        "paymentMethod": "cod"
+      },
+      "status": "Delivered",
+      "paymentMethod": "cod",
+      "date": "2025-10-16T09:07:13.528Z"
+    },
+    {
+      "id": "1760606444988",
+      "userId": "870e",
+      "products": [
+        {
+          "id": "19",
+          "userId": "870e",
+          "productId": "19",
+          "name": "Vanilla Dusk",
+          "price": 2000,
+          "image": "/products/oriental4.jpg",
+          "description": "Soft vanilla with warm undertones, a comforting and sensual scent.",
+          "type": "Oriental",
+          "featured": true,
+          "qty": 1
+        }
+      ],
+      "total": 2000,
+      "shipping": {
+        "name": "Rihaan Shehariyar",
+        "address": "Thikkodi Panchayath calicut kerala\nLove Dale HO",
+        "phone": "8921996927",
+        "paymentMethod": "cod"
+      },
+      "status": "Delivered",
+      "paymentMethod": "cod",
+      "date": "2025-10-16T09:20:44.988Z"
     }
   ]
 }
